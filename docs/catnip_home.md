@@ -1,3 +1,9 @@
+
+---
+layout: post
+title: Blogging Like a Hacker
+---
+
 # QC_Tools/CATNIP
 
 ## Motivation
