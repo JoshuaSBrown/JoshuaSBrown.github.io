@@ -20,3 +20,9 @@ To understand the theory used to calculate the charge transfer integrals please 
 This executable is designed to calculate the transfer integral between two monomers. Currently, it only takes output from the Gaussian quantum chemistry software package. If you have another package you would want to use it with please let me know and we can work on implementing it. The calculation will calculate the transfer integral correctly between any two molecules. They do not need to be the same molecule or orientated symmetrically with respect to each other.
 
 [back](./)
+
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+$$ J = \bra \Psi | \Psi \ket $$
