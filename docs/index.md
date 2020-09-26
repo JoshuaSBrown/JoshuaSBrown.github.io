@@ -8,5 +8,5 @@ layout: default
 {% link catnip_home.md %}
 
 <a href="catnip_home.md">CATNIP</a>
-[CATNIP](./catnip_home.md) 
+[CATNIP](./catnip_home.html) 
 
