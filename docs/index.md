@@ -2,4 +2,4 @@
 
 ## Projects
 
-[CATNIP](catnip_home.md) 
+[CATNIP](https://github.com/JoshuaSBrown/JoshuaSBrown.github.io/blob/master/docs/catnip_home.md) 
