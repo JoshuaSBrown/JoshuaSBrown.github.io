@@ -32,7 +32,6 @@ This executable is designed to calculate the transfer integral between two monom
     jax: ["input/TeX", "output/CommonHTML"],
     TeX: {
       extensions: [
-        "Braket.js"
         "AMSmath.js",
         "AMSsymbols.js",
         "noErrors.js",
@@ -46,4 +45,4 @@ This executable is designed to calculate the transfer integral between two monom
   src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
 
-$$ J = \bra{ \Psi } | \hat{H} | \ket{ \Psi } $$
+$$ \require{braket} J = \bra{ \Psi } | \hat{H} | \ket{ \Psi } $$
