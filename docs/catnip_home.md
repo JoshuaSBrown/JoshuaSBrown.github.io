@@ -32,6 +32,7 @@ This executable is designed to calculate the transfer integral between two monom
     jax: ["input/TeX", "output/CommonHTML"],
     TeX: {
       extensions: [
+        "braket.js"
         "AMSmath.js",
         "AMSsymbols.js",
         "noErrors.js",
