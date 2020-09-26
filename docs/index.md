@@ -6,5 +6,5 @@ layout: default
 
 ## Projects
 
-[CATNIP](./catnip_home.html) 
+[CATNIP](./CATNIP/catnip_home.html) 
 
