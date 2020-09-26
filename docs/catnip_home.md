@@ -39,10 +39,16 @@ This executable is designed to calculate the transfer integral between two monom
       ]
     }
   });
+  window.MathJax = {
+    loader: {load: ['[tex]/braket']},
+    tex: {packages: {'[+]': ['braket']}}
+  };
 </script>
+
+
 
 <script type="text/javascript" async
   src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
 
-$$ \require{braket} J = \bra{ \Psi } | \hat{H} | \ket{ \Psi } $$
+$$ J = \bra{ \Psi } | \hat{H} | \ket{ \Psi } $$
