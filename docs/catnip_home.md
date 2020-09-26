@@ -41,9 +41,8 @@ This executable is designed to calculate the transfer integral between two monom
   });
 </script>
 
-
 <script type="text/javascript" async
   src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
 
-$$ J = \bra \Psi | \Psi \ket $$
+$$ J = \bra{ \Psi } | \hat{H} | \ket{ \Psi } $$
