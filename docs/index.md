@@ -2,4 +2,4 @@
 
 ## Projects
 
-[CATNIP]() 
+[CATNIP](CATNIP/catnip_home.md) 
