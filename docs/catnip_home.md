@@ -39,10 +39,6 @@ This executable is designed to calculate the transfer integral between two monom
       ]
     }
   });
-  window.MathJax = {
-    loader: {load: ['[tex]/braket']},
-    tex: {packages: {'[+]': ['braket']}}
-  };
 </script>
 
 
