@@ -1,6 +1,6 @@
 ---
 layout: default
-title: ChArge TraNsfer Integral Package (CATNIP) Home Page
+site.title: ChArge TraNsfer Integral Package (CATNIP) Home Page
 ---
 
 # QC_Tools/CATNIP
