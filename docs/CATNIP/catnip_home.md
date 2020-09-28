@@ -50,14 +50,14 @@ $$ J = \langle \Psi_A | \hat{H} | \Psi_B \rangle $$
 
 #Chapters
 
-[Downloads](catnip_downloads.html)
-[Compiling](catnip_compile.html)
-[Gaussian Files](catnip_gaussian_files.html)
-[Theory](catnip_theory.html)
-[Tutorial 1](catnip_tutorial1.html)
-[Tutorial 2](catnip_tutorial2.html)
-[Tutorial 3](catnip_tutorial3.html)
-[Versions](catnip_versions.html)
-[Resources](catnip_resources.html)
-[Papers][catnip_papers.html)
+1. [Downloads](catnip_downloads.html)
+2. [Compiling](catnip_compile.html)
+3. [Gaussian Files](catnip_gaussian_files.html)
+4. [Theory](catnip_theory.html)
+5. [Tutorial 1](catnip_tutorial1.html)
+6. [Tutorial 2](catnip_tutorial2.html)
+7. [Tutorial 3](catnip_tutorial3.html)
+8. [Versions](catnip_versions.html)
+9. [Resources](catnip_resources.html)
+10. [Papers](catnip_papers.html)
 
