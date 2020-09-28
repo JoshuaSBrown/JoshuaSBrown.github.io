@@ -1,10 +1,12 @@
-# Downloading
+# Downloading & Building
+
+## Recommended for the General User
 
 Starting with version 1.8, binary and source files are available for a number of distributions packaged in .tar.gz files. All you have to do is download the appropriate tar file, untar it, and run the binary `calc_J`. They are available on [github under the release tab](https://github.com/JoshuaSBrown/QC_Tools/releases).
 
 The files associated with the tutorial have been uploaded to [google drive](https://drive.google.com/file/d/1rCsj_jpMyE0S0cokFJDyBSA0aPNiIHNb/view?usp=sharing) as a zip file. Feel free to download them as well.
 
-## Building from Source
+## (For Developers or Unique Architectures) Building from Source
 
 If a binary file is not available for you specific architecture and distribution, you can download the source code and build the program from scratch. The code is simple enough to compile after downloading all you really need is cmake and the g++ compiler. It has not been tested on windows or OSX.
 
