@@ -48,7 +48,7 @@ This executable is designed to calculate the transfer integral between two monom
 
 $$ J = \langle \Psi_A | \hat{H} | \Psi_B \rangle $$
 
-#Chapters
+# Chapters
 
 1. [Downloads](catnip_downloads.html)
 2. [Compiling](catnip_compile.html)
