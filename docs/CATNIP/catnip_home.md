@@ -13,34 +13,6 @@ These tools are being developed to post-process data from electronic structure c
 
 This executable is designed to calculate the transfer integral between two monomers. Currently, it only takes output from the Gaussian quantum chemistry software package. If you have another package you would want to use it with please let me know and we can work on implementing it. The calculation will calculate the transfer integral correctly between any two molecules. They do not need to be the same molecule or orientated symmetrically with respect to each other.
 
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    extensions: [
-      "MathMenu.js",
-      "MathZoom.js",
-      "AssistiveMML.js",
-      "a11y/accessibility-menu.js"
-    ],
-    jax: ["input/TeX", "output/CommonHTML"],
-    TeX: {
-      extensions: [
-        "AMSmath.js",
-        "AMSsymbols.js",
-        "noErrors.js",
-        "noUndefined.js",
-      ]
-    }
-  });
-</script>
-
-
-
-<script type="text/javascript" async
-  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
-
-$$ J = \langle \Psi_A | \hat{H} | \Psi_B \rangle $$
-
 # Chapters
 
 1. [Downloading & Building](./catnip_downloads.html)
