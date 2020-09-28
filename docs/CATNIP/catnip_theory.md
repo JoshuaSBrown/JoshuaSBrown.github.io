@@ -13,8 +13,35 @@
 
 The charge transfer integral is written mathematically as:
 
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: [
+      "MathMenu.js",
+      "MathZoom.js",
+      "AssistiveMML.js",
+      "a11y/accessibility-menu.js"
+    ],
+    jax: ["input/TeX", "output/CommonHTML"],
+    TeX: {
+      extensions: [
+        "AMSmath.js",
+        "AMSsymbols.js",
+        "noErrors.js",
+        "noUndefined.js",
+      ]
+    }
+  });
+</script>
+
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
 <p align=center> 
-J= &#10092; &Psi; <sub>A</sub> &#124; &#292; &#124; &Psi; <sub>B</sub> &#10093;
+
+$$ J = \langle \Psi_A | \hat{H} | \Psi_B \rangle $$
+
 </p>
 
 Here, &Psi;<sub>A</sub> and &Psi;<sub>B</sub> represent the wavefunctions of two different quantum states which are orthonormal and &Hcirc; represents the Hamiltonian operator. J represents the electronic coupling between states A and B. The larger the coupling the larger the probability that a charge in state A will move to state B and vice versa.
