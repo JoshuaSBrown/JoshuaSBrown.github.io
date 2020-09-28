@@ -12,7 +12,7 @@ Three separate calculations are needed to calculate the charge transfer integral
 
 Both monomer 1 and 2 calculations should remain in the same positions as they appear in the dimer calculation. After the calculation has completed you should have generated the correct output files.
 
-![](../_assets/40EthyleneGaussianFiles.png)
+![](../../_assets/40EthyleneGaussianFiles.png)
 
 #### Note
 
