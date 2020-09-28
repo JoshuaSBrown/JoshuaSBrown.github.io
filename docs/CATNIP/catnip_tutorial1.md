@@ -1,4 +1,4 @@
-# Tutorial 1
+# Tutorial 1 - Getting Started
 
 This tutorial details the steps needed to calculate the transfer integral from a Gaussian calculation. This tutorial assumes you have successfully installed 'calc_J' and you have already downloaded [GAUSSIANFILES.zip](https://drive.google.com/file/d/1rCsj_jpMyE0S0cokFJDyBSA0aPNiIHNb/view?usp=sharing) and unzipped it.
 
