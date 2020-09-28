@@ -1,4 +1,4 @@
-## Getting Started
+# Tutorial 1
 
 This tutorial details the steps needed to calculate the transfer integral from a Gaussian calculation. This tutorial assumes you have successfully installed 'calc_J' and you have already downloaded [GAUSSIANFILES.zip](https://drive.google.com/file/d/1rCsj_jpMyE0S0cokFJDyBSA0aPNiIHNb/view?usp=sharing) and unzipped it.
 
@@ -32,7 +32,7 @@ To Calculate the transfer integral from the QC_Tools, if the .log and .pun files
 
 A value should be output of:
 
-J_eff 0.0563167 eV
+    J_eff 0.0563167 eV
 
 This is the charge transfer integral for the HOMO between the monomers. By default the HOMO will be output. 
 
@@ -57,7 +57,7 @@ Additional functionality has been added to access the transfer integrals of the 
 
 This yields: 
 
-J_eff 0.142718 eV
+    J_eff 0.142718 eV
 
 Note, both the monomer 1 and monomer 2 orbital types must be specified, otherwise the unspecified one will by default be the HOMO. 
 
@@ -67,13 +67,13 @@ To calculate the transfer integral between HOMO monomer 1 and LUMO monomer 2:
 
 Giving:
 
-J_eff -9.81153e-12 eV
+    J_eff -9.81153e-12 eV
 
 Finally, if one would like to access different orbitals such as the transfer integral between the HOMO-1 of monomer 1 and LUMO+2 of monomer 2 it can be done by specifying: 
 
     calc_J -p_1 GAUSSIANFILES/40/ref.pun -orb_ty_1 HOMO -orb_num_1 -1 -p_2 GAUSSIANFILES/40/40_2.pun -orb_ty_2 LUMO -orb_num_2 2 -p_P GAUSSIANFILES/40/40_pair.pun
 
-J_eff -0.00190564 eV
+    J_eff -0.00190564 eV
 
 ## Final note on Spin
 
