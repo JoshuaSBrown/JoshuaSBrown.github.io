@@ -1,6 +1,32 @@
-# Warning Still under development may not be accurate!
+**Warning Still under development may not be accurate!**
+
+# Tutorial 3 - Calculating the Tunneling Constant
 
 ## Calculating the Tunneling Constant
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: [
+      "MathMenu.js",
+      "MathZoom.js",
+      "AssistiveMML.js",
+      "a11y/accessibility-menu.js"
+    ],
+    jax: ["input/TeX", "output/CommonHTML"],
+    TeX: {
+      extensions: [
+        "AMSmath.js",
+        "AMSsymbols.js",
+        "noErrors.js",
+        "noUndefined.js",
+      ]
+    }
+  });
+</script>
+
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
 
 Transfer integrals are an important of the charge transport rate equations. The two most common rate equations are the Miller and Abrahams Rate Equation and the semiclassical Marcus rate equation. 
 
