@@ -61,7 +61,7 @@ It would be helpful at this point to explain what the energy splitting dimer met
 
 Now if we remember that when we bring two molecules together the Pauli exclusion principle states that no more than two electrons can occupy the same orbital and hence the orbitals will split. Take the simple case of two Helium atoms that approach one another, at a distance they will each have a single occupied orbital. As the atoms approach the orbital will split into two orbitals, the highest occupied molecular orbital (HOMO) and HOMO-1 of the dimer.
 
-![]({{ "/assets/HeliumBonding.png" | absolute_url }})
+![]({{ "/assets/HeliumBonding.png" | absolute_url }})<!-- .element height="60%" width="60%" -->
 
 The magnitude of the split in energy is a result of the energy level of the HOMO of each of the Helium atoms which we will call the site energy. The second contribution arises from the interaction of the two HOMO levels. It is this interaction that we call the transfer integral. 
 In this simple case because both atoms are identical, they will have the same site energies. This means that the split between the HOMO and HOMO-1 is purely a result of the transfer integral. As powerful as this technique is for calculating the transfer integral its limitations are very apparent.
