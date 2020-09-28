@@ -7,7 +7,9 @@
 
 **1. In this section I hope to clarify what and how the transfer integral is calculated. Be aware that I am presenting my understanding, I will try my best to be accurate, but the reader is always advised to refer to peer-reviewed literature. I would recommend that the reader read through the papers by Baumeier and Valeev. 2. If you notice inconsistencies in your understanding and the theory presented here please contact me so that it can be corrected or the documentation can be made clearer.**
 
-# Introduction
+# Theory
+
+## Introduction
 
 The charge transfer integral is written mathematically as:
 
