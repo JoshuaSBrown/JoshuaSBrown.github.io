@@ -7,6 +7,12 @@ site.title: ChArge TraNsfer Integral Package (CATNIP) Home Page
 ![logo]({{ "/assets/CATNIPLong.png" | absolute_url }})
 {: refdef}
 
+
+<p align="center"">
+   <img src="/assets/CATNIPLong.png" width="100%" />
+</p>
+
+
 # ChArge TraNsfer Integral Package (CATNIP) Home Page
 
 ## Motivation
