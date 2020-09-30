@@ -50,27 +50,34 @@ For the purpose of this tutorial we will once again use an ethylene dimer to ill
 
 Several dimer calculations were run at different distances while keeping the molecules symmetrically orientated. As shown for ethylene molecules separated at a distance of 1 angstrom and 5 angstroms. 
 
+<img src="/assets/Dimer1Ang.jpg" width="100%" />
 ![](https://github.com/JoshuaSBrown/QC_Tools/blob/master/docs/images/Dimer1Ang.jpg)
 
+<img src="/assets/Dimer5Ang.jpg" width="100%" />
 ![](https://github.com/JoshuaSBrown/QC_Tools/blob/master/docs/images/Dimer5Ang.jpg)
 
 Using calc_J you can then calculate the effective transfer integrals. Now if we were interested in modeling charge transport for an electron we would look at the transfer integrals between the LUMO orbitals. However, organic semiconductors tend to be hole transport materials so I have instead calculated the transfer integrals between the HOMO values. By squaring them and fitting them to an exponential fit the tunneling constant can then be determined. 
 
+
+<img src="/assets/DistanceVsJeff.jpg" width="100%" />
 ![](https://github.com/JoshuaSBrown/QC_Tools/blob/master/docs/images/DistanceVsJeff.jpg)
 
-The fit shown above was made using matlabs cftools. Which calculated a best fit value for ![](https://github.com/JoshuaSBrown/QC_Tools/blob/master/docs/images/alpha.jpg) of 0.6441 and of ![](https://github.com/JoshuaSBrown/QC_Tools/blob/master/docs/images/J0.jpg) of 71.31. However, this is misleading as I have plotted in a linear scale. Look how poor the fit is when shown in the log scale. 
+The fit shown above was made using matlabs cftools. Which calculated a best fit value for $$\alpha$$ of 0.6441 and of $$J_0$$ of 71.31. However, this is misleading as I have plotted in a linear scale. Look how poor the fit is when shown in the log scale. 
 
+<img src="/assets/DistanceVsJeffLog.jpg" width="100%" />
 ![](https://github.com/JoshuaSBrown/QC_Tools/blob/master/docs/images/DistanceVsJeffLog.jpg)
 
 Note that the fit is poor for values less than 2 Ang. A better way to make a fit would be to exclude the values before 2 Ang so this is what I have done.
 
+<img src="/assets/Distance2VsJeff.jpg" width="100%" />
+<img src="/assets/Distance2VsJeff.jpg" width="100%" />
 ![](https://github.com/JoshuaSBrown/QC_Tools/blob/master/docs/images/Distance2VsJeff.jpg)
 ![](https://github.com/JoshuaSBrown/QC_Tools/blob/master/docs/images/Distance2VsJeffLog.jpg)
 
-Here, I get much better values with ![](https://github.com/JoshuaSBrown/QC_Tools/blob/master/docs/images/alpha.jpg) of 1.0614 and of ![](https://github.com/JoshuaSBrown/QC_Tools/blob/master/docs/images/J0.jpg) of 438.1032. Note that at large distances the results start to diverge again, this is expected because I used a Gaussian basis set and is thus a limitation of using Gaussian functions to describe what in reality should be an exponential curve at large distances, if you wanted a better fit at larger distances I would recommend using a better basis set or a long range corrected functional. 
+Here, I get much better values with $$\alpha$$ of 1.0614 and of $$J_0$$ of 438.1032. Note that at large distances the results start to diverge again, this is expected because I used a Gaussian basis set and is thus a limitation of using Gaussian functions to describe what in reality should be an exponential curve at large distances, if you wanted a better fit at larger distances I would recommend using a better basis set or a long range corrected functional. 
 For your convenience I have also provided all the values that I calculated so you can compare your results with them. 
 
-| Distance [Ang] | J_eff [eV] | J_eff^2 [eV^2] |
+| Distance [Ang] | $$J_{eff}$$ [eV] | $${J_{eff}}^2$$ [eV^2] |
 | -------------- | ---------- | -------------- |
 | 1.00 | 4.5380 | 20.5937 |
 | 1.25 | 3.3862 | 11.4666 |
