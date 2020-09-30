@@ -85,7 +85,7 @@ However, if you are running unrestricted calculations you must make sure you kno
 
 You must pay attention to the positions of the atoms in the dimer. The atom positions cannot change for the dimer and monomer calculations. This is because the program is not smart enough to associate which orbitals belong to which atoms. 
 
-![Image of dimer of two ethane molecules](https://github.com/JoshuaSBrown/QC_Tools/blob/figures/40.jpg)
+<img src="/assets/40.jpg" width="100%" />
 
 In the image shown all the atoms in the first molecule are 1-6 and the atoms in the second molecule 7-12. They must be separated in this way. The atoms must appear in the .gjf/.com file for the dimer system in this way. Such that all the atoms in the first monomer appear followed by all the atoms in the second monomer. 
 
