@@ -3,7 +3,9 @@ layout: default
 site.title: ChArge TraNsfer Integral Package (CATNIP) Home Page
 ---
 
+{:refdef: style="text-align: center;"}
 ![logo]({{ "/assets/CATNIPLong.png" | absolute_url }})
+{: refdef}
 
 # ChArge TraNsfer Integral Package (CATNIP) Home Page
 
