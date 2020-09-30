@@ -6,5 +6,5 @@ layout: default
 
 ## Projects
 
-[CATNIP](./docs/CATNIP/catnip_home.html) 
+[ChArge TraNsport Integral Package (CATNIP)](./docs/CATNIP/catnip_home.html) 
 
