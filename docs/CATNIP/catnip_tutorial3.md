@@ -60,19 +60,15 @@ Using calc_J you can then calculate the effective transfer integrals. Now if we 
 
 
 <img src="/assets/DistanceVsJeff.jpg" width="100%" />
-![](https://github.com/JoshuaSBrown/QC_Tools/blob/master/docs/images/DistanceVsJeff.jpg)
 
 The fit shown above was made using matlabs cftools. Which calculated a best fit value for $$\alpha$$ of 0.6441 and of $$J_0$$ of 71.31. However, this is misleading as I have plotted in a linear scale. Look how poor the fit is when shown in the log scale. 
 
 <img src="/assets/DistanceVsJeffLog.jpg" width="100%" />
-![](https://github.com/JoshuaSBrown/QC_Tools/blob/master/docs/images/DistanceVsJeffLog.jpg)
 
 Note that the fit is poor for values less than 2 Ang. A better way to make a fit would be to exclude the values before 2 Ang so this is what I have done.
 
 <img src="/assets/Distance2VsJeff.jpg" width="100%" />
 <img src="/assets/Distance2VsJeff.jpg" width="100%" />
-![](https://github.com/JoshuaSBrown/QC_Tools/blob/master/docs/images/Distance2VsJeff.jpg)
-![](https://github.com/JoshuaSBrown/QC_Tools/blob/master/docs/images/Distance2VsJeffLog.jpg)
 
 Here, I get much better values with $$\alpha$$ of 1.0614 and of $$J_0$$ of 438.1032. Note that at large distances the results start to diverge again, this is expected because I used a Gaussian basis set and is thus a limitation of using Gaussian functions to describe what in reality should be an exponential curve at large distances, if you wanted a better fit at larger distances I would recommend using a better basis set or a long range corrected functional. 
 For your convenience I have also provided all the values that I calculated so you can compare your results with them. 
