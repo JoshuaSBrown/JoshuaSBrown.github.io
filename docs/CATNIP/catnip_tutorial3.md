@@ -30,11 +30,11 @@
 
 Transfer integrals are an important of the charge transport rate equations. The two most common rate equations are the Miller and Abrahams Rate Equation and the semiclassical Marcus rate equation. 
 
-$$k_{ij} = \nu_0 e^{-2 \alpha r_{ij}} e^{- \frac{|\varepsilon_i - \varepsilon_j| - (\varepsilon_i - \varepsilon_j)}{k_B T}}$$
-![MandA](https://github.com/JoshuaSBrown/QC_Tools/blob/master/docs/images/MillerAndAbrahams.jpg)
+$$k_{ij} = \nu_0 e^{-2 \alpha r_{ij}} e^{- \frac{|\varepsilon_j - \varepsilon_i| - (\varepsilon_j - \varepsilon_i)}{k_B T}}$$
 
 Here, ![](https://github.com/JoshuaSBrown/QC_Tools/blob/master/docs/images/nu0.jpg) represents the attempt to hop frequency, ![](https://github.com/JoshuaSBrown/QC_Tools/blob/master/docs/images/alpha.jpg) sometimes written with a ![](https://github.com/JoshuaSBrown/QC_Tools/blob/master/docs/images/gamma.jpg) represents the tunneling constant or inverse localization length, ![](https://github.com/JoshuaSBrown/QC_Tools/blob/master/docs/images/rij.jpg}) is the distance between two sites, ![equation](https://github.com/JoshuaSBrown/QC_Tools/blob/master/docs/images/Ei.jpg) and ![](https://github.com/JoshuaSBrown/QC_Tools/blob/master/docs/images/Ej.jpg) are the energies of the sites, and ![](https://github.com/JoshuaSBrown/QC_Tools/blob/master/docs/images/BoltzmannConstant.jpg) is the Boltzmann constant and ![](https://github.com/JoshuaSBrown/QC_Tools/blob/master/docs/images/Temperature.jpg) the temperature respectively. 
 
+$$k_{ij} = \frac{2 \pi}{\hbar} \frac{1}{4 \pi k_B T} |H_{AB}|^2 e^{-\frac{(\Delta G-\lambda)^2}{4 \pi \lambda }}$$
 ![](https://github.com/JoshuaSBrown/QC_Tools/blob/master/docs/images/Marcus.jpg)
 
 Here ![](https://github.com/JoshuaSBrown/QC_Tools/blob/master/docs/images/hbar.jpg) is Planck's constant, ![](https://github.com/JoshuaSBrown/QC_Tools/blob/master/docs/images/DeltaG.jpg) is Gibbs free energy, ![](https://github.com/JoshuaSBrown/QC_Tools/blob/master/docs/images/Hab.jpg) is the transfer integral sometimes it is denoted as ![](https://github.com/JoshuaSBrown/QC_Tools/blob/master/docs/images/Jab.jpg) and ![](https://github.com/JoshuaSBrown/QC_Tools/blob/master/docs/images/lambda.jpg) is the reorganization energy. 
