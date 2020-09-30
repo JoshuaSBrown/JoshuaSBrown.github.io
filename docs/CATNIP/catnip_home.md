@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: catnip_home
 site.title: ChArge TraNsfer Integral Package (CATNIP) Home Page
 ---
 
