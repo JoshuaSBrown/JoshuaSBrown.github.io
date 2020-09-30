@@ -41,7 +41,6 @@ Here $$\hbar$$ is Planck's constant, $$\Delta G$$ is Gibbs free energy, $$H_{AB}
 The Miller and Abrahams rate equation was developed heuristically but has been used quite successfully. On the other hand the Marcus rate equation developed by Rudolph Marcus (1992 Nobel Prize in chemistry) has been more rigorously derived from first principles. Regardless of whether you pick one or the other the transfer integral is a key component. If you want to enhance the analysis of your papers there are a few simple calculations that you can do. One of these is to calculate the tunneling constant. Often times people like to create an analytical expression to approximate the transfer integral as a function of distance this is explicitly written in the Miller and Abrahams equation above with the $$e^{-2 \alpha r_{ij}}$$ term. The approximation can also be used with the Marcus rate equation when you consider that $$H_{AB}$$ can essentially be written as:
 
 $$ |H_{AB}|^2 = |J_{AB}|^2 = J_0 e^{-2 \alpha r_{ij}}$$
-![](https://github.com/JoshuaSBrown/QC_Tools/blob/master/docs/images/TunnelingTerm2.jpg)
 
 Using this analytical expression then removes the need to calculate the transfer integral between every pair of molecules. Granted, this approximation is not always ideal especially when you have molecules that are asymmetrical in which case the orientation will play an important role. 
 
