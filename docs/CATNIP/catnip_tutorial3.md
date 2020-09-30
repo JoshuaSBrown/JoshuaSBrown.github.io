@@ -30,6 +30,7 @@
 
 Transfer integrals are an important of the charge transport rate equations. The two most common rate equations are the Miller and Abrahams Rate Equation and the semiclassical Marcus rate equation. 
 
+$$k_{ij} = \nu_0 e^{-2 \alpha r_{ij}} e^{- \frac{|\varepsilon_i - \varepsilon_j| - (\varepsilon_i - \varepsilon_j)}{k_B T}}$$
 ![MandA](https://github.com/JoshuaSBrown/QC_Tools/blob/master/docs/images/MillerAndAbrahams.jpg)
 
 Here, ![](https://github.com/JoshuaSBrown/QC_Tools/blob/master/docs/images/nu0.jpg) represents the attempt to hop frequency, ![](https://github.com/JoshuaSBrown/QC_Tools/blob/master/docs/images/alpha.jpg) sometimes written with a ![](https://github.com/JoshuaSBrown/QC_Tools/blob/master/docs/images/gamma.jpg) represents the tunneling constant or inverse localization length, ![](https://github.com/JoshuaSBrown/QC_Tools/blob/master/docs/images/rij.jpg}) is the distance between two sites, ![equation](https://github.com/JoshuaSBrown/QC_Tools/blob/master/docs/images/Ei.jpg) and ![](https://github.com/JoshuaSBrown/QC_Tools/blob/master/docs/images/Ej.jpg) are the energies of the sites, and ![](https://github.com/JoshuaSBrown/QC_Tools/blob/master/docs/images/BoltzmannConstant.jpg) is the Boltzmann constant and ![](https://github.com/JoshuaSBrown/QC_Tools/blob/master/docs/images/Temperature.jpg) the temperature respectively. 
