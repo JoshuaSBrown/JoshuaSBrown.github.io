@@ -51,10 +51,8 @@ For the purpose of this tutorial we will once again use an ethylene dimer to ill
 Several dimer calculations were run at different distances while keeping the molecules symmetrically orientated. As shown for ethylene molecules separated at a distance of 1 angstrom and 5 angstroms. 
 
 <img src="/assets/Dimer1Ang.jpg" width="100%" />
-![](https://github.com/JoshuaSBrown/QC_Tools/blob/master/docs/images/Dimer1Ang.jpg)
 
 <img src="/assets/Dimer5Ang.jpg" width="100%" />
-![](https://github.com/JoshuaSBrown/QC_Tools/blob/master/docs/images/Dimer5Ang.jpg)
 
 Using calc_J you can then calculate the effective transfer integrals. Now if we were interested in modeling charge transport for an electron we would look at the transfer integrals between the LUMO orbitals. However, organic semiconductors tend to be hole transport materials so I have instead calculated the transfer integrals between the HOMO values. By squaring them and fitting them to an exponential fit the tunneling constant can then be determined. 
 
