@@ -32,7 +32,7 @@ Transfer integrals are an important of the charge transport rate equations. The 
 
 $$k_{ij} = \nu_0 e^{-2 \alpha r_{ij}} e^{- \frac{|\varepsilon_j - \varepsilon_i| - (\varepsilon_j - \varepsilon_i)}{k_B T}}$$
 
-Here, ![](https://github.com/JoshuaSBrown/QC_Tools/blob/master/docs/images/nu0.jpg) represents the attempt to hop frequency, ![](https://github.com/JoshuaSBrown/QC_Tools/blob/master/docs/images/alpha.jpg) sometimes written with a ![](https://github.com/JoshuaSBrown/QC_Tools/blob/master/docs/images/gamma.jpg) represents the tunneling constant or inverse localization length, ![](https://github.com/JoshuaSBrown/QC_Tools/blob/master/docs/images/rij.jpg}) is the distance between two sites, ![equation](https://github.com/JoshuaSBrown/QC_Tools/blob/master/docs/images/Ei.jpg) and ![](https://github.com/JoshuaSBrown/QC_Tools/blob/master/docs/images/Ej.jpg) are the energies of the sites, and ![](https://github.com/JoshuaSBrown/QC_Tools/blob/master/docs/images/BoltzmannConstant.jpg) is the Boltzmann constant and ![](https://github.com/JoshuaSBrown/QC_Tools/blob/master/docs/images/Temperature.jpg) the temperature respectively. 
+Here, $$\nu_0$$ represents the attempt to hop frequency, $$\alpha$$ sometimes written with a $$\gamma$$ represents the tunneling constant or inverse localization length, $$r_{ij}$$ is the distance between two sites, $$\varepsilon_i$$ and $$\varepsilon_j$$ are the energies of the sites, and $$k_B$$ is the Boltzmann constant and $$T$$ the temperature respectively. 
 
 $$k_{ij} = \frac{2 \pi}{\hbar} \frac{1}{4 \pi k_B T} |H_{AB}|^2 e^{-\frac{(\Delta G-\lambda)^2}{4 \pi \lambda }}$$
 ![](https://github.com/JoshuaSBrown/QC_Tools/blob/master/docs/images/Marcus.jpg)
