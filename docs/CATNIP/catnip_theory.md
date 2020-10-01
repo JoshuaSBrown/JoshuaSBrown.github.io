@@ -39,7 +39,7 @@ The charge transfer integral is written mathematically as:
 
 
 <p align=center> 
-$$J = \langle \Psi_A | \hat{H} | \Psi_B \rangle $$ (1)
+$$J = \langle \Psi_A | \hat{H} | \Psi_B \rangle$$ (1)
 </p>
 
 Here, &Psi;<sub>A</sub> and &Psi;<sub>B</sub> represent the wavefunctions of two different quantum states which are orthonormal and &Hcirc; represents the Hamiltonian operator. J represents the electronic coupling between states A and B. The larger the coupling the larger the probability that a charge in state A will move to state B and vice versa.
@@ -63,7 +63,7 @@ Now if we remember that when we bring two molecules together the Pauli exclusion
 
 The magnitude of the split in energy is a result of the energy level of the HOMO of each of the Helium atoms which we will call the site energy. The second contribution arises from the interaction of the two HOMO levels. It is this interaction that we call the transfer integral. In this simple case because both atoms are identical, they will have the same site energies. This means that the split between the HOMO and HOMO-1 is purely a result of the transfer integral. 
 
-$$ J = \frac{E_{HOMO}-E_{HOMO-1}}{2} $$ (2)
+$$ J = \frac{ E_{HOMO} - E_{HOMO-1} }{2} $$ (2)
 
 Here, $$E_{HOMO}$$ and $$E_{HOMO-1}$$ represent the molecular orbital energies of the HOMO and HOMO-1. 
 
@@ -77,9 +77,11 @@ $$K^+ + K \rightleftharpoons K + K^+$$ (3)
 
 We have the state of the charge potassium and the state of the uncharged potassium. At some point these atoms come into proximity and become electronically coupled. It is the transition at this point that we want to calculate the transfer integral.
 
+<p align=center> 
 | State A	| State B	|
 | ------- | ------- |
 | $$K^+$$	| $$K$$   |
+</p>
 
 For state $$A$$, we will use the wavefunction $$\psi_A$$ associated with the highest **unoccupied** orbital of the positively charged potassium atom. For state $$B$$, we will use the wavefunction $$\psi_B$$ associated with the highest **occupied** orbital of the neutral potassium atom. 
 At this point, we know what wave functions we need but to calculate them we can use Quantum Chemistry calculations. Running Quantum Chemistry calculations on the neutral and positively charged potassium atoms in isolation will yield the diabatic states, where the orbitals of interest are associated only with their respective atoms.
