@@ -71,7 +71,7 @@ As powerful as this technique is for calculating the transfer integral its limit
 
 ## Accounting for Polarization
 
-The starting point for finding the transfer integrals of a system of molecules is to solve the Shr &ouml dinger equation for equation 1 shown at the top. This can be done, but we need some idea of what the quantum states $$\Psi_A$$ and $$\Psi_B$$ should look like. To help illustrate what I mean consider the exchange reaction. 
+The starting point for finding the transfer integrals of a system of molecules is to solve the Shr&ouml;dinger equation for equation 1 shown at the top. This can be done, but we need some idea of what the quantum states $$\Psi_A$$ and $$\Psi_B$$ should look like. To help illustrate what I mean consider the exchange reaction. 
 
 $$K^+ + K \rightleftharpoons K + K^+$$
 
