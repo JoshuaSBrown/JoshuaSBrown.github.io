@@ -33,15 +33,21 @@ The charge transfer integral is written mathematically as:
   });
 </script>
 
+window.MathJax = {
+  tex: {
+    tags: 'ams'
+  }
+};
+
 <script type="text/javascript" async
   src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
 
 
 <p align=center> 
-
-$$ J = \langle \Psi_A | \hat{H} | \Psi_B \rangle $$
-
+\begin{equation}
+J = \langle \Psi_A | \hat{H} | \Psi_B \rangle $$
+\end{equation}
 </p>
 
 Here, &Psi;<sub>A</sub> and &Psi;<sub>B</sub> represent the wavefunctions of two different quantum states which are orthonormal and &Hcirc; represents the Hamiltonian operator. J represents the electronic coupling between states A and B. The larger the coupling the larger the probability that a charge in state A will move to state B and vice versa.
@@ -63,13 +69,29 @@ Now if we remember that when we bring two molecules together the Pauli exclusion
 
 ![]({{ "/assets/HeliumBonding.svg" | absolute_url }})<!-- .element height="60%" width="60%" -->
 
-The magnitude of the split in energy is a result of the energy level of the HOMO of each of the Helium atoms which we will call the site energy. The second contribution arises from the interaction of the two HOMO levels. It is this interaction that we call the transfer integral. 
-In this simple case because both atoms are identical, they will have the same site energies. This means that the split between the HOMO and HOMO-1 is purely a result of the transfer integral. As powerful as this technique is for calculating the transfer integral its limitations are very apparent.
+The magnitude of the split in energy is a result of the energy level of the HOMO of each of the Helium atoms which we will call the site energy. The second contribution arises from the interaction of the two HOMO levels. It is this interaction that we call the transfer integral. In this simple case because both atoms are identical, they will have the same site energies. This means that the split between the HOMO and HOMO-1 is purely a result of the transfer integral. 
 
-Say you have two molecules that are not chemically and spatially symmetric, the dimer splitting method in this case cannot resolve the correct contributions from the site energies and transfer integrals as you cannot assume the site energies and or the transfer integrals will be equal. Furthermore, note that we have assumed that the HOMO and HOMO-1 energy split is purely a result of the interaction of the HOMO orbitals of the two isolated Helium atoms. This is also a limitation. For instance, if you start with an isolated molecule which has a HOMO and HOMO-1 that are close in energy, when the molecule forms a dimer both orbitals of the HOMO and HOMO-1 may interact it will then be difficult to correctly resolve which contributions to the Pauli splitting arise from which transfer integrals. 
+$$ J = \frac{E_{HOMO}-E{HOMO-1}}{2} $$
+
+Here, $$E_{HOMO}$$ and $$E_{HOMO-1}$$ represent the molecular orbital energies of the HOMO and HOMO-1. 
+
+As powerful as this technique is for calculating the transfer integral its limitations are very apparent. Say you have two molecules that are not chemically and spatially symmetric, the dimer splitting method in this case cannot resolve the correct contributions from the site energies and transfer integrals as you cannot assume the site energies and or the transfer integrals will be equal. Furthermore, note that we have assumed that the HOMO and HOMO-1 energy split is purely a result of the interaction of the HOMO orbitals of the two isolated Helium atoms. This is also a limitation. For instance, if you start with an isolated molecule which has a HOMO and HOMO-1 that are close in energy, when the molecule forms a dimer both orbitals of the HOMO and HOMO-1 may interact it will then be difficult to correctly resolve which contributions to the Pauli splitting arise from which transfer integrals. 
 
 ## Accounting for Polarization
 
+The starting point for finding the transfer integrals of a system of molecules is to solve the Shr&uodinger equation for equation 1 shown at the top. This can be done, but we need some idea of what the quantum states $$\psi_A$$ and $$\psi_B$$ should look like. To help illustrate what I mean consider the exchange reaction. 
+
+$$K^+ + K \rightleftharpoons K + K^+$$
+
+We have the state of the charge potassium and the state of the uncharged potassium. At some point these atoms come into proximity and become electronically coupled. It is the transition at this point that we want to calculate the transfer integral.
+
+| State A	| State B	|
+| ------- | ------- |
+| $$K^+$$	| $$K$$   |
+
+For state $$A$$, we will use the wavefunction $$\psi_A$$ associated with the highest unoccupied orbital of the positively charged potassium atom. For state $$B$$, we will use the wavefunction $$\psi_B$$ associated with the highest occupied orbital of the neutral potassium atom. 
+At this point, we know what wave functions we need but to calculate them we can use Quantum Chemistry calculations. Running Quantum Chemistry calculations on the neutral and positively charged potassium atoms in isolation will yield the diabatic states, where the orbitals of interest are associated only with their respective atoms.
+At this point we have everything we need to solve equation 1, we just need to find an appropriate Hamiltonian operator and do a substantial amount of math (Don’t worry we will use a trick from the Baumeier paper to get around most of the more involved math). There is one problem that remains, because most Quantum Chemical calculations will generate quantum states from a linear combination of atomic orbitals (LCAO). These states will not by default be orthonormal to one another and thus the transfer integral is not quite right.
 
 # References
 
