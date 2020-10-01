@@ -33,12 +33,6 @@ The charge transfer integral is written mathematically as:
   });
 </script>
 
-window.MathJax = {
-  tex: {
-    tags: 'ams'
-  }
-};
-
 <script type="text/javascript" async
   src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
