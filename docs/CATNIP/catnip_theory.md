@@ -77,11 +77,9 @@ $$K^+ + K \rightleftharpoons K + K^+$$
 
 We have the state of the charge potassium and the state of the uncharged potassium. At some point these atoms come into proximity and become electronically coupled. It is the transition at this point that we want to calculate the transfer integral.
 
-<p align=center> 
 | State A	| State B	|
 | ------- | ------- |
 | $$K^+$$	| $$K$$   |
-</p>
 
 For state $$A$$, we will use the wavefunction $$\Psi_A$$ associated with the highest **unoccupied** orbital of the positively charged potassium atom. For state $$B$$, we will use the wavefunction $$\Psi_B$$ associated with the highest **occupied** orbital of the neutral potassium atom. 
 At this point, we know what wave functions we need but to calculate them we can use Quantum Chemistry calculations. Running Quantum Chemistry calculations on the neutral and positively charged potassium atoms in isolation will yield the diabatic states, where the orbitals of interest are associated only with their respective atoms.
