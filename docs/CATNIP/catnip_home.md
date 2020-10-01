@@ -23,7 +23,8 @@ This executable is designed to calculate the transfer integral between two monom
 4. [Tutorial 1](./catnip_tutorial1.html)
 5. [Tutorial 2](./catnip_tutorial2.html)
 6. [Tutorial 3](./catnip_tutorial3.html)
-7. [Versions](./catnip_versions.html)
-8. [Resources](./catnip_resources.html)
-9. [Papers](./catnip_papers.html)
+7. [Common Problems](./catnip_common_problems.html)
+8. [Versions](./catnip_versions.html)
+9. [Resources](./catnip_resources.html)
+10. [Papers](./catnip_papers.html)
 
