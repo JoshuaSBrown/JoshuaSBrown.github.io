@@ -63,7 +63,7 @@ Now if we remember that when we bring two molecules together the Pauli exclusion
 
 The magnitude of the split in energy is a result of the energy level of the HOMO of each of the Helium atoms which we will call the site energy. The second contribution arises from the interaction of the two HOMO levels. It is this interaction that we call the transfer integral. In this simple case because both atoms are identical, they will have the same site energies. This means that the split between the HOMO and HOMO-1 is purely a result of the transfer integral. 
 
-$$ J = \frac{ E_{HOMO} - E_{HOMO-1} }{2} $$ (2)
+$$ J = \frac{ E_{HOMO} - E_{HOMO-1} }{2} $$
 
 Here, $$E_{HOMO}$$ and $$E_{HOMO-1}$$ represent the molecular orbital energies of the HOMO and HOMO-1. 
 
@@ -73,7 +73,7 @@ As powerful as this technique is for calculating the transfer integral its limit
 
 The starting point for finding the transfer integrals of a system of molecules is to solve the Shr&uodinger equation for equation 1 shown at the top. This can be done, but we need some idea of what the quantum states $$\Psi_A$$ and $$\Psi_B$$ should look like. To help illustrate what I mean consider the exchange reaction. 
 
-$$K^+ + K \rightleftharpoons K + K^+$$ (3)
+$$K^+ + K \rightleftharpoons K + K^+$$
 
 We have the state of the charge potassium and the state of the uncharged potassium. At some point these atoms come into proximity and become electronically coupled. It is the transition at this point that we want to calculate the transfer integral.
 
