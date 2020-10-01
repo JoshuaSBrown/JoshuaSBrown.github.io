@@ -39,10 +39,10 @@ The charge transfer integral is written mathematically as:
 
 
 <p align=center> 
-$$J = \langle \Psi_A | \hat{H} | \Psi_B \rangle$$ (1)
+$$J = \langle \Psi_A | \hat{H} | \Psi_B \rangle$$
 </p>
 
-Here, &Psi;<sub>A</sub> and &Psi;<sub>B</sub> represent the wavefunctions of two different quantum states which are orthonormal and &Hcirc; represents the Hamiltonian operator. J represents the electronic coupling between states A and B. The larger the coupling the larger the probability that a charge in state A will move to state B and vice versa.
+Here, $$\Psi_A$$ and $$\Psi_B$$ represent the wavefunctions of two different quantum states which are orthonormal and $$\hat{H}$$; represents the Hamiltonian operator. $$J$$ represents the electronic coupling between states $$A$$ and $$B$$. The larger the coupling the larger the probability that a charge in state $$A$$ will move to state $$B$$ and vice versa.
 
 
 There are different methods for calculating the charge transfer integrals that make use of various approximations, these include the energy splitting in dimer method among others [1].
@@ -71,7 +71,7 @@ As powerful as this technique is for calculating the transfer integral its limit
 
 ## Accounting for Polarization
 
-The starting point for finding the transfer integrals of a system of molecules is to solve the Shr&uodinger equation for equation 1 shown at the top. This can be done, but we need some idea of what the quantum states $$\psi_A$$ and $$\psi_B$$ should look like. To help illustrate what I mean consider the exchange reaction. 
+The starting point for finding the transfer integrals of a system of molecules is to solve the Shr&uodinger equation for equation 1 shown at the top. This can be done, but we need some idea of what the quantum states $$\Psi_A$$ and $$\Psi_B$$ should look like. To help illustrate what I mean consider the exchange reaction. 
 
 $$K^+ + K \rightleftharpoons K + K^+$$ (3)
 
@@ -83,7 +83,7 @@ We have the state of the charge potassium and the state of the uncharged potassi
 | $$K^+$$	| $$K$$   |
 </p>
 
-For state $$A$$, we will use the wavefunction $$\psi_A$$ associated with the highest **unoccupied** orbital of the positively charged potassium atom. For state $$B$$, we will use the wavefunction $$\psi_B$$ associated with the highest **occupied** orbital of the neutral potassium atom. 
+For state $$A$$, we will use the wavefunction $$\Psi_A$$ associated with the highest **unoccupied** orbital of the positively charged potassium atom. For state $$B$$, we will use the wavefunction $$\Psi_B$$ associated with the highest **occupied** orbital of the neutral potassium atom. 
 At this point, we know what wave functions we need but to calculate them we can use Quantum Chemistry calculations. Running Quantum Chemistry calculations on the neutral and positively charged potassium atoms in isolation will yield the diabatic states, where the orbitals of interest are associated only with their respective atoms.
 At this point we have everything we need to solve equation 1, we just need to find an appropriate Hamiltonian operator and do a substantial amount of math (Don’t worry we will use a trick from the Baumeier paper to get around most of the more involved math). There is one problem that remains, because most Quantum Chemical calculations will generate quantum states from a linear combination of atomic orbitals (LCAO). These states will not by default be orthonormal to one another and thus the transfer integral is not quite right.
 
