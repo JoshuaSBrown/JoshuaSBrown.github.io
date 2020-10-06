@@ -1,3 +1,6 @@
+---
+layout: sub_home
+---
 # Introduction
 
 ## Why use C++ for scientific software development?
