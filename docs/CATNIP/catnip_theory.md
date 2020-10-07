@@ -91,7 +91,7 @@ To understand the next couple of steps it is essential that the reader has a tho
 
 To find an accurate solution, the basis functions must span the function space. It is easier to illustrate this in terms of a vector space. Imagine that you want to describe movement in 3 dimensions, and you have a total of 3 vectors, but all three vectors lie on a place. These vectors would not be linearly independent, and it would only be possible to describe movement along a plane. To span the vector space at least one of the three vectors must extend above or below the plane. If we take this picture one step further and ensure that each vector describes a unique dimension (in other words they are made perpendicular) then we can say that the vectors are orthogonal. The cartoon below illustrates the difference.  
 
-<img src="/assets/LinearIndependenceVec.svg" width="100%" />
+<img src="/assets/LinearIndependentVec.svg" width="100%" />
 
 Notice, that in the second picture you can still describe movement in 3 dimensions you cannot say that the first vector uniquely describes the x dimension because all three vectors have an x component. However, when we orthogonalize the vectors it now becomes clear that each vector is associated with a particular dimension. This same picture holds true for basis functions in the function space. 
 
