@@ -42,7 +42,7 @@ The charge transfer integral is written mathematically as:
 $$J = \langle \Psi_A | \hat{H} | \Psi_B \rangle$$
 </p>
 
-Here, $$\Psi_A$$ and $$\Psi_B$$ represent the wavefunctions of two different quantum states which are orthonormal and $$\hat{H}$$; represents the Hamiltonian operator. $$J$$ represents the electronic coupling between states $$A$$ and $$B$$. The larger the coupling the larger the probability that a charge in state $$A$$ will move to state $$B$$ and vice versa.
+Here, $$\Psi_A$$ and $$\Psi_B$$ represent the wavefunctions of two different quantum states which are **orthogonal** and $$\hat{H}$$; represents the Hamiltonian operator. $$J$$ represents the electronic coupling between states $$A$$ and $$B$$. The larger the coupling the larger the probability that a charge in state $$A$$ will move to state $$B$$ and vice versa.
 
 
 There are different methods for calculating the charge transfer integrals that make use of various approximations, these include the energy splitting in dimer method among others [1].
@@ -83,9 +83,9 @@ We have the state of the charge potassium and the state of the uncharged potassi
 
 For state $$A$$, we will use the wavefunction $$\Psi_A$$ associated with the highest **unoccupied** orbital of the positively charged potassium atom. For state $$B$$, we will use the wavefunction $$\Psi_B$$ associated with the highest **occupied** orbital of the neutral potassium atom. 
 At this point, we know what wave functions we need but to calculate them we can use Quantum Chemistry calculations. Running Quantum Chemistry calculations on the neutral and positively charged potassium atoms in isolation will yield the diabatic states, where the orbitals of interest are associated only with their respective atoms.
-At this point we have everything we need to solve equation 1, we just need to find an appropriate Hamiltonian operator and do a substantial amount of math (Don’t worry we will use a trick from the Baumeier paper to get around most of the more involved math). There is one problem that remains, because most Quantum Chemical calculations will generate quantum states from a linear combination of atomic orbitals (LCAO). These states will not by default be orthonormal to one another and thus the transfer integral is not quite right.
+At this point we have almost everything we need to solve equation 1, we just need to find an appropriate Hamiltonian operator and do a substantial amount of math (Don’t worry we will use a trick from the Baumeier paper to get around most of the more involved math). There is one problem that remains, because most Quantum Chemical calculations will generate quantum states from a linear combination of atomic orbitals (LCAO). These states will not by default be **orthogonal** to one another as there will be overlap between the basis set of $$\Psi_A$$ and $$\Psi_B$$ and thus when we use equation 1 to calculate the transfer integral the value we calculate will not be quite right. 
 
-## Basis sets and Orthogonalization
+### Basis sets and Orthogonalization
 
 To understand the next couple of steps it is essential that the reader has a thorough grasp of what a **basis set** is and why **orthogonalization** is important. The **basis set** is a set of functions. In Quantum Chemistry calculations, we are interested in solving the Shr&ouml;dinger equation for systems of atoms. The wavefunction of our system can be represented with a vector of coefficients, where the coefficients represent the weight of each **basis function**. The larger the basis set is the easier it is to accurately represent the exact wavefunction.
 
@@ -95,15 +95,14 @@ To find an accurate solution, the basis functions must **span** the function spa
 
 We can take this picture one step further and ensure that each vector describes a **unique** direction by moving $$v$$ to the $$v''$$ position and $$w$$ to the $$w'$$ position (in other words they are made perpendicular), then we can say that the vectors are **orthogonal**. When we **orthogonalize** the vectors it becomes clear that each vector is **uniquely** associated with movement in a particular dimension. This same picture holds true for **basis functions** in the **function space**.
 
-If we are smart we can approximate the shape of the wavefunction closely using algebraic functions that are easier to manipulate and also closely mimic the shape of the actual wavefunction. Other approximations can also be used to limit the number of basis functions needed to describe a particular system but I digress. The point is the basis functions represent the degrees of freedom that are available in a Quantum Chemistry calculation for describing the electronic system. 
-When the Shr&ouml;dinger equation is solved for a system of atoms using atom centered basis functions the solution can be represented as a Hamiltonian matrix. 
+There are different ways of orthogonalizing a basis set. Again, I will use vector space to illustrate the difference. The image below depicts a vector basis set made up of two vectors that are not othogonal to one another. One possible way to make them orthogonal is to choose one of the vectors and move the next vector such that it is at a 90 degree angle. If we had a third vector we could then move that vector and make sure that it was in turn orthogonal to the other two vectors. This orthgonalization technique is called **Grahm Schmidt** orthogonalization. Another technique would be to move both vectors in a symmetric manner from their starting position this is known as **Symmetric** orthogonalization, there is another way to do this called **Cannonical** orthogonalization but I digress. 
 
 <img src="/assets/Orthogonalization.svg" width="100%" />
 
-The cartoon above pictorially depicts orthogonalization process for a simple set of basis functions. The initial image depicts two basis functions which overlap in the space that they describe. In other words the basis functions do not describe independent dimensions. Now if we were to describe the molecular orbitals in terms of basis functions that were not orthonormal. It would make it very difficult to assign a physical interpretation to a given basis function, because you might be using the same basis function to describe 
 
 
 # References
 
 1.  J. Kirkpatrick, “An approximate method for calculating transfer integrals based on the ZINDO Hamiltonian,” Int. J. Quantum Chem., vol. 108, no. 1, pp. 51–56, 2008.
 2.  E. F. Valeev, V. Coropceanu, D. a da Silva Filho, S. Salman, and J.-L. Brédas, “Effect of electronic polarization on charge-transport parameters in molecular organic semiconductors.,” J. Am. Chem. Soc., vol. 128, no. 30, pp. 9882–6, Aug. 2006.
+  
