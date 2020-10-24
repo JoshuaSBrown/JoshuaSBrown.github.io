@@ -66,7 +66,7 @@ The fit shown above was made using matlabs cftools. Which calculated a best fit 
 Note that the fit is poor for values less than 2 Ang. A better way to make a fit would be to exclude the values before 2 Ang so this is what I have done.
 
 <img src="/assets/Distance2VsJeff.jpg" width="100%" />
-<img src="/assets/Distance2VsJeff.jpg" width="100%" />
+<img src="/assets/Distance2VsJeffLog.jpg" width="100%" />
 
 Here, I get much better values with $$\alpha$$ of 1.0614 and of $$J_0$$ of 438.1032. Note that at large distances the results start to diverge again, this is expected because I used a Gaussian basis set and is thus a limitation of using Gaussian functions to describe what in reality should be an exponential curve at large distances, if you wanted a better fit at larger distances I would recommend using a better basis set or a long range corrected functional. 
 For your convenience I have also provided all the values that I calculated so you can compare your results with them. 
