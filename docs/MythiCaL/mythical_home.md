@@ -23,6 +23,12 @@ The library is designed to work with rates and could for instance be used with:
 
 The library makes use of c++14 features so requires gcc 6 or a compiler with similar support. 
 
+## Chapters
+
+1. [Downloading & Building](./mythical_dowloading_building.html)
+2. [Importing the library with CMake](./mythical_importing_cmake.html)
+3. [Tutorial 1 Charge Transport Background](./mythical_background.html)
+
 ## Download
     
     git clone --recursive https://github.com/JoshuaSBrown/CoarseGrainSites
