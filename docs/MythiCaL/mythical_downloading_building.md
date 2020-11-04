@@ -7,7 +7,7 @@
 
     git clone --recursive https://github.com/JoshuaSBrown/Mythical
     cd Mythical
-    cmake -S. build
+    cmake -S . -B build
     cmake -DCMAKE_BUILD_TYPE=Release --build build
     cmake --install build
     
