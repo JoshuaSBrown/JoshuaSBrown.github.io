@@ -2,7 +2,7 @@
 layout: mythical_home
 --- 
 
-# Monte Carlo Coarse-Graining Library (MthyiCaL)
+# Monte Carlo Coarse-Graining Library (MythiCaL)
 
 Library is designed to coarse grain kinetic Monte Carlo Simulations. Primary motivation for this library is to reduce the number of unnecessary compute cycles.
 
