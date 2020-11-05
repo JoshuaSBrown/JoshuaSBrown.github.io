@@ -12,9 +12,10 @@ Below is a simple cpp source file **example.cpp** which simply prints the versio
 #include <mythical/version.hpp>
 #include <iostream>
 
+using namespace mythical;
 int main() {
   std::cout << "This file has been built with:" << std::endl;
-  std::cout << mythical::PROJECT_NAME << " " << mythical::PROJECT_VER << std::endl;
+  std::cout << PROJECT_NAME << " " << PROJECT_VER << std::endl;
   return 0;
 }
 ```
