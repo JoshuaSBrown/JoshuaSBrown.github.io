@@ -1,3 +1,7 @@
+---
+layout: mythical_default
+--- 
+
 # Monte Carlo Charge Transport Simulations (Under Active Development)
 
 In this tutorial, the KMC library is explained and utilized to run a KMC charge transport simulation. 
