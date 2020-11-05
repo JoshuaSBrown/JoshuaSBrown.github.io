@@ -25,7 +25,7 @@ The library makes use of c++14 features so requires gcc 6 or a compiler with sim
 
 ## Chapters
 
-1. [Downloading & Building](./mythical_dowloading_building.html)
+1. [Downloading & Building](./mythical_downloading_building.html)
 2. [Importing the library with CMake](./mythical_importing_cmake.html)
 3. [Tutorial 1 Charge Transport Background](./mythical_background.html)
  
