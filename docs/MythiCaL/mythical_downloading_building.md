@@ -4,9 +4,8 @@ layout: mythical_default
 
 # Downloading & Building 
 
-## Recommended for the General User
-
-## (For Developers or Unique Architectures) Building from Source
+MythiCaL is hosted [here](https://github.com/JoshuaSBrown/MythiCaL) on github. It can be downloaded,
+built and installed with just a few CMake commands.
 
     git clone --recursive https://github.com/JoshuaSBrown/Mythical
     cd Mythical
