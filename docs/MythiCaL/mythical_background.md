@@ -22,10 +22,10 @@ Before the library can be used you need to determine how the rates are too be ca
 
 ## References
 
-1	H. Bassler, G. Schonherr, M. Abkowitz, and D. M. Pai, “Hopping transport in prototypical organic glasses,” Phys. Rev. B, vol. 26, no. 6, pp. 3105–3113, 1982.
-2	L. Wang, Q. Li, Z. Shuai, L. Chen, and Q. Shi, “Multiscale study of charge mobility of organic semiconductor with dynamic disorders,” Phys. Chem. Chem. Phys., vol. 12, no. 13, p. 3309, 2010.
-3	R. G. E. Kimber, E. N. Wright, S. E. J. O’Kane, A. B. Walker, and J. C. Blakesley, “Mesoscopic kinetic Monte Carlo modeling of organic photovoltaic device characteristics,” Phys. Rev. B, vol. 86, p. 235206, 2012.
-4	J. Kirkpatrick, V. Marcon, J. Nelson, K. Kremer, and D. Andrienko, “Charge mobility of discotic mesophases: A multiscale quantum/classical study,” Phys. Rev. Lett., vol. 98, p. 227402, Jan. 2007.
+1.	H. Bassler, G. Schonherr, M. Abkowitz, and D. M. Pai, “Hopping transport in prototypical organic glasses,” Phys. Rev. B, vol. 26, no. 6, pp. 3105–3113, 1982.
+2.	L. Wang, Q. Li, Z. Shuai, L. Chen, and Q. Shi, “Multiscale study of charge mobility of organic semiconductor with dynamic disorders,” Phys. Chem. Chem. Phys., vol. 12, no. 13, p. 3309, 2010.
+3.	R. G. E. Kimber, E. N. Wright, S. E. J. O’Kane, A. B. Walker, and J. C. Blakesley, “Mesoscopic kinetic Monte Carlo modeling of organic photovoltaic device characteristics,” Phys. Rev. B, vol. 86, p. 235206, 2012.
+4.	J. Kirkpatrick, V. Marcon, J. Nelson, K. Kremer, and D. Andrienko, “Charge mobility of discotic mesophases: A multiscale quantum/classical study,” Phys. Rev. Lett., vol. 98, p. 227402, Jan. 2007.
 
 
 
