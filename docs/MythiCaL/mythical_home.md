@@ -31,7 +31,8 @@ The library makes use of c++14 features so requires gcc 6 or a compiler with sim
 2. [Importing the library with CMake](./mythical_importing_cmake.html)
 3. [Tutorial 1 Charge Transport Background](./mythical_background.html)
 4. [Tutorial 1 1D Monte Carlo Charge Transport](./mythical_tutorial_1.html)
- 
+5. [Tutorial 2 Time of Flight](./mythical_tutorial_2.html)
+
 ## Author List
 
 * Joshua Brown
