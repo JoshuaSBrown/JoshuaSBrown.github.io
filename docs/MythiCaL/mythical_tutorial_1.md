@@ -163,3 +163,7 @@ Charge occupying site: 19 dwell time 0.181556
 Charge occupying site: 20 dwell time 0.278988
 Charge occupying site: 19 dwell time 0.150574
 ```
+
+<video width="480" height="240" controls="controls">
+  <source src="/assets/output.mp4" type="video/mp4">
+</video>
