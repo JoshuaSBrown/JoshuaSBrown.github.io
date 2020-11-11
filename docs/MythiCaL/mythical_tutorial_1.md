@@ -112,19 +112,19 @@ To compile directly you could enter something like what is shown below where the
 **-I** and **-L** are followed by the paths to the includes and the library. 
 
 ```bash
-gcc 1D_example.cpp -o 1D_example -lstdc++ -I/usr/local/include/kmccoarsegrain -L/usr/local/lib/kmccoarsegrain -lkmccoarsegrain
+ gcc 1D_example.cpp -o 1D_example -lstdc++ -I/usr/local/include/mythical -L/usr/local/lib/mythical -lmythical
 ```
 
 Using our recommended approach you could have a simple cmake file.
 
 ```cmake
 cmake_minimum_required(VERSION 3.12)
-project(ToF_example)
+project(1D_example)
 
 enable_language(CXX)
 
 find_package(MythiCaL REQUIRED)
-add_executable(ToF_example ToF_example.cpp)
+add_executable(1D_example 1D_example.cpp)
 
 target_link_libraries(ToF_example PUBLIC mythical::mythical)
 ``` 
