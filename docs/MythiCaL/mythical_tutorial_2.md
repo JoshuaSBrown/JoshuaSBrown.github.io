@@ -15,7 +15,7 @@ did previously but with several improvements.
 
 # 1. Creating a cubic lattice 
 
-<img src="/assets/mythical_tutorial_II_a.jpg" width="100%" />
+<img src="/assets/mythical_tutorial_II_a.jpg" margin="40px" width="100%" />
 
 Here we demonstrate a cubic lattice of sites. A normal or Gaussian distribution
 is then used to assign energies randomly to each of the sites in the lattice.
