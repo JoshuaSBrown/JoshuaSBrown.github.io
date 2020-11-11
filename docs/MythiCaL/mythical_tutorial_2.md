@@ -1,9 +1,16 @@
+
+---
+layout: mythical_default
+--- 
+
+# Overview
+
 In the previous simulation, I showed how to simulate a single charge moving along a 1d lattice. In this tutorial, we will expand on what we did previously but with several improvements. 
 
 1. We will use a 3d lattice, with periodic boundaries on the y and z directions
 2. We will use the Marcus rate equation with the Gaussian Disorder model to generate our rates
 3. We will simulate several charges as opposed to just 1
-4. We will show how to calculate the displacement current and the diffusion constant
+4. We will show how to calculate the current transient
 
 # 1. Creating a cubic lattice 
 
