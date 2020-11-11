@@ -1,8 +1,41 @@
-Here we have created a 20 site system. Each site is connected to it's two nearest neighbors with the exception of the two end sites. 
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: [
+      "MathMenu.js",
+      "MathZoom.js",
+      "AssistiveMML.js",
+      "a11y/accessibility-menu.js"
+    ],
+    jax: ["input/TeX", "output/CommonHTML"],
+    TeX: {
+      extensions: [
+        "AMSmath.js",
+        "AMSsymbols.js",
+        "noErrors.js",
+        "noUndefined.js",
+      ]
+    }
+  });
+</script>
 
-![Image of sites](https://github.com/JoshuaSBrown/CoarseGrainSites/blob/master/CoarseGrainSites/doc/I.aTutorialPicture1.png)
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
 
-A charge is created which inherits from the random walker class. A single charge is created from the Charge class and is given an id of 0 and initially placed on site 1. The charge is then allowed to hop between the sites using the built in KMC engine by calling the hop function. The charges dwell time and the site it occupies is updated each time the hop() function is called. The rates have been setup so that it is much more favorable to hop towards the neighboring site with the largest id. 
+
+
+Here we have created a 20 site system. Each site is connected to it's two
+nearest neighbors with the exception of the two end sites. 
+
+<img src="/assets/mythical_tutorial_I_a.png" width="100%" />
+
+A charge is created which inherits from the random walker class. A single
+charge is created from the Charge class and is given an id of 0 and initially
+placed on site 1. The charge is then allowed to hop between the sites using the
+built in KMC engine by calling the hop function. The charges dwell time and the
+site it occupies is updated each time the hop() function is called. The rates
+have been setup so that it is much more favorable to hop towards the
+neighboring site with the largest id. 
 
 ## Code
 ```c++
@@ -75,15 +108,45 @@ int main(){
 
 ## Compilation
 
-    gcc test.cpp -o test -lstdc++ -I/usr/local/include/kmccoarsegrain -L/usr/local/lib/kmccoarsegrain -lkmccoarsegrain
+To compile directly you could enter something like what is shown below where the
+**-I** and **-L** are followed by the paths to the includes and the library. 
+
+```bash
+gcc 1D_example.cpp -o 1D_example -lstdc++ -I/usr/local/include/kmccoarsegrain -L/usr/local/lib/kmccoarsegrain -lkmccoarsegrain
+```
+
+Using our recommended approach you could have a simple cmake file.
+
+```cmake
+cmake_minimum_required(VERSION 3.12)
+project(ToF_example)
+
+enable_language(CXX)
+
+find_package(MythiCaL REQUIRED)
+add_executable(ToF_example ToF_example.cpp)
+
+target_link_libraries(ToF_example PUBLIC mythical::mythical)
+``` 
+
+And then run in the terminal:
+
+```bash
+$ cmake -S . -B build
+$ cmake --build build
+```
 
 ## Running
 
-Notice that the dwell time varies during each hop even though the rates are the same off each site. This is because though the sites will have a time constant that is the same the dwell time is calculated from the dwell time using a random number X with the equation:
+Notice that the dwell time varies during each hop even though the rates are the
+same off each site. This is because though the sites will have a time constant
+that is the same the dwell time is calculated from the dwell time using a
+random number X with the equation:
 
-![dwell_time_image](https://github.com/JoshuaSBrown/CoarseGrainSites/blob/master/CoarseGrainSites/doc/DwellTime.jpg)
+$$ t_{dwell} = -log(X) \tau_{dwell} $$
 
-The random number ![X](https://github.com/JoshuaSBrown/CoarseGrainSites/blob/master/CoarseGrainSites/doc/X.jpg) is a value between 0 and 1 and changes each time the hop function is called. 
+The random number $$X$$ is a value between 0 and 1 and changes each time the
+hop function is called. 
 
 ```bash
 $ ./1D_example
