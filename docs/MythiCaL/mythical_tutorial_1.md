@@ -1,3 +1,7 @@
+---
+layout: mythical_default
+--- 
+
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
     extensions: [
@@ -164,6 +168,7 @@ Charge occupying site: 20 dwell time 0.278988
 Charge occupying site: 19 dwell time 0.150574
 ```
 
-<video width="480" height="240" controls="controls">
+Below is a short animation showing how the charge moves between sites in a random fashion but is biased to one end. 
+<video class="center" width="700" height="200" controls="controls">
   <source src="/assets/output.mp4" type="video/mp4">
 </video>
