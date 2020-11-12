@@ -169,8 +169,13 @@ sites within this cutoff distance will be considered a potential hopping site.
 We then proceed to define several of the constants. 
 
 I have made use of the Marcus rate equation pacakged with MythiCaL to actually
-calculate the rates, the appropriate include line is `#include
-<mythical/charge_transport/marcus.hpp>`.  Additionally, the site energies that
+calculate the rates, the appropriate include line is 
+
+```c++
+#include <mythical/charge_transport/marcus.hpp>
+```
+
+Additionally, the site energies that
 are passed to the Marcus rate equation are adjusted to account for effects of
 an external electric field applied in the x direction of our lattice.
 
