@@ -124,7 +124,7 @@ The next step involves defining the hopping rates that govern charge movement be
 will calculate these rates using the semiclassical Marcus rate equation, though the Miller and 
 Abrahams rate equation would also be appropriate.
 
-$$ k_ij = \frac{2\pi}{\hbar} \frac{1}{\sqrt(2 \pi \lambda k_B T)} |H_{AB}|^2 exp( - \frac{(\lambda + \varepsilon_j - \varepsilon_i)^2}{4 \lambda k_B T} ) $$
+$$ k_ij = \frac{2\pi}{\hbar} \frac{1}{\sqrt{2 \pi \lambda k_B T}} |H_{AB}|^2 e^{ - \frac{(\lambda + \varepsilon_j - \varepsilon_i)^2}{4 \lambda k_B T} } $$
 
 * $$k_ij$$ represents the hopping rate [1/s]
 * $$\hbar$$ is plank's constant with a value of $$6.582119569 \times 10^{−16}
