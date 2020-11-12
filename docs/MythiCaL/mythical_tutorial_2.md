@@ -143,7 +143,7 @@ However, an explanation of how the $$H_{AB}$$ is calculated is warranted. We
 will assume that the $$H_{AB}$$ is the same between every site with only a
 distance dependence. Such that $$H_{AB}$$ has the following form. 
 
-$$|H_{AB}|^2 = J_0 e^(- 2 \alpha r_{ij} )$$
+$$|H_{AB}|^2 = J_0 e^{- 2 \alpha r_{ij} }$$
 
 * $$J_0$$ is a prefactor [eV]
 * $$\alpha$$ is a tunneling constant [1/nm]
