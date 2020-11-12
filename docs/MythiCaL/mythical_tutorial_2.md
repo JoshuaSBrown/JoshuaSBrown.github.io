@@ -29,12 +29,25 @@ layout: mythical_default
 
 # Overview
 
-In the previous simulation, I showed how to simulate a single charge
-moving along a 1d lattice. In this tutorial, we will expand on what we
-did previously but with several improvements. 
+In the previous simulation, I showed how to simulate a single charge moving
+along a 1d lattice. In this tutorial, we will expand on what we did previously
+but with several improvements by simulating a Time of Flight (ToF) experiment.
+
+The goal of a ToF experiment is to calculate the carrier mobility, typically it
+is used with organic semiconductors. To do this a material is sandwhiched
+between two electrodes. An electric field is applied between the electrodes to
+drive a current. At this point we however have no free carriers. To create some
+carriers light is used to optically excite charges on one side of the material.
+The electric field then facilitates of the charges to the opposing electrode.
+
+<img src="/assets/mythical_ToF_tutorial_II_b.jpg"  width="90%" style="border:30px solid white" />
+
+In this tutorial, we will model this experiment but with the improvements listed
+below. 
 
 1. We will use a 3d lattice, with periodic boundaries on the y and z directions
-2. We will use the Marcus rate equation with the Gaussian Disorder model to generate our rates
+2. We will use the Marcus rate equation with the Gaussian Disorder model to
+   generate our rates
 3. We will simulate several charges as opposed to just 1
 4. We will show how to calculate the current transient
 
@@ -42,9 +55,9 @@ did previously but with several improvements.
 
 <img src="/assets/mythical_tutorial_II_a.jpg"  width="90%" style="border:30px solid white" />
 
-Here we demonstrate a cubic lattice of sites. MythiCaL carries with it for 
-convenience a class specefically for this purpose which can easily be imported by
-including the right header file. 
+Here we demonstrate a cubic lattice of sites. MythiCaL carries with it for
+convenience a class specefically for this purpose which can easily be imported
+by including the right header file. 
 
 ```c++
 #include <mythical/charge_transport/cubic_lattice.hpp>
@@ -77,16 +90,16 @@ A normal or Gaussian distribution is often used to represent the Density of
 States (DOS) of disordered semiconductors. We will use the that approximation
 here, but if one actually knew the shape of the DOS it could be used instead. 
 
-One of the chief approximations of Gaussian Disorder Model used by B&auml;ssler is
-that the energies assigned to sites are uncorrelated. This means we can
+One of the chief approximations of Gaussian Disorder Model used by B&auml;ssler
+is that the energies assigned to sites are uncorrelated. This means we can
 randomly assign energies from the DOS to each of the sites without considering
 that sites in close proximity might be energetically similar. Thankfully the
 c++ standard library comes with a nice random number generator.
 
-In the code snippet below, we know the total number of sites, so a vector instance equal
-to the number of sites is first initialized. Each site has an index and thus each index of the
-vector (**site_energies**) is assigned the energy associated with that particular
-site.  
+In the code snippet below, we know the total number of sites, so a vector
+instance equal to the number of sites is first initialized. Each site has an
+index and thus each index of the vector (**site_energies**) is assigned the
+energy associated with that particular site.  
 
 ```c++
 std::vector<double> generateSiteEnergies(const int & total_num_sites) {
@@ -114,19 +127,21 @@ Abrahams rate equation would also be appropriate.
 $$ k_ij = \frac{2\pi}{\hbar} \frac{1}{\sqrt(2 \pi \lambda k_B T)} |H_{AB}|^2 exp( - \frac{(\lambda + \varepsilon_j - \varepsilon_i)^2}{4 \lambda k_B T} ) $$
 
 * $$k_ij$$ represents the hopping rate [1/s]
-* $$\hbar$$ is plank's constant with a value of $$6.582119569 \times 10^{−16} $$ [eV s]
+* $$\hbar$$ is plank's constant with a value of $$6.582119569 \times 10^{−16}
+  $$ [eV s]
 * $$\lambda$$ is the reorganization energy [eV]
-* $$k_B$$ is Boltzmann's constant with a value of $$8.617333262145 \times 10^{−5}$$ [eV/K]
+* $$k_B$$ is Boltzmann's constant with a value of $$8.617333262145 \times
+  10^{−5}$$ [eV/K]
 * $$T$$ is the temperature [K]
 * $$H_{AB}$$ is the electronic coupling between initial and final states [eV]
 * $$\varepsilon_i$$ is the energy of the site the charge is hopping from [eV]
 * $$\varepsilon_j$$ is the energy of the site the charge is hopping to [eV]
 
-I will not go into detail about the Marcus rate equation and how it is derived as there are 
-numerious other resources available to the interested reader. However, an explanation of 
-how the $$H_{AB}$$ is calculated is warranted. We will assume that the $$H_{AB}$$ is the 
-same between every site with only a distance dependence. Such that $$H_{AB}$$ has the following
-form. 
+I will not go into detail about the Marcus rate equation and how it is derived
+as there are numerious other resources available to the interested reader.
+However, an explanation of how the $$H_{AB}$$ is calculated is warranted. We
+will assume that the $$H_{AB}$$ is the same between every site with only a
+distance dependence. Such that $$H_{AB}$$ has the following form. 
 
 $$|H_{AB}|^2 = J_0 e^(- 2 \alpha r_{ij} )$$
 
@@ -134,34 +149,40 @@ $$|H_{AB}|^2 = J_0 e^(- 2 \alpha r_{ij} )$$
 * $$\alpha$$ is a tunneling constant [1/nm]
 * $$r_{ij}$$ is the distance between sites $$i$$ and $$j$$
 
-This approximation is sufficient for our purposes. Deriving appropriate values for $$H_{AB}$$ 
-is a bit annoying and requires Quantum Chemistry calculations. You could use the energy 
-splitting in dimer method mentioned [here](https://joshuasbrown.github.io/docs/CATNIP/catnip_theory.html) to calculate $$H_{AB}$$.
-For a more sophisticated approach one could use the CATNIP program with Gaussian, I have provided
-a small [tutorial](https://joshuasbrown.github.io/docs/CATNIP/catnip_tutorial3.html) 
-showing how to caculate the constants shown in the equation above. Some Quantum Chemistry
-packages also provide a means of calcuating $$|H_{AB}|$$ natively such as NWCHem.
+This approximation is sufficient for our purposes. Deriving appropriate values
+for $$H_{AB}$$ is a bit annoying and requires Quantum Chemistry calculations.
+You could use the energy splitting in dimer method mentioned
+[here](https://joshuasbrown.github.io/docs/CATNIP/catnip_theory.html) to
+calculate $$H_{AB}$$.  For a more sophisticated approach one could use the
+CATNIP program with Gaussian, I have provided a small
+[tutorial](https://joshuasbrown.github.io/docs/CATNIP/catnip_tutorial3.html)
+showing how to caculate the constants shown in the equation above. Some Quantum
+Chemistry packages also provide a means of calcuating $$|H_{AB}|$$ natively
+such as NWCHem.
 
-In the following code snippet we show how the rates are prepared to run a Time of Flight 
-simulation using MythiCaL. The rates are stored in a nested unordered_map. The keys of
-both maps are the site indices. 
+In the following code snippet we show how the rates are prepared to run a Time
+of Flight simulation using MythiCaL. The rates are stored in a nested
+unordered_map. The keys of both maps are the site indices. 
 
-We have defined a cutoff distance of $$2.0$$ nm for neighboring sites. Only sites within
-this cutoff distance will be considered a potential hopping site. We then proceed to 
-define several of the constants. 
+We have defined a cutoff distance of $$2.0$$ nm for neighboring sites. Only
+sites within this cutoff distance will be considered a potential hopping site.
+We then proceed to define several of the constants. 
 
-I have made use of the Marcus rate equation pacakged
-with MythiCaL to actually calculate the rates, the appropriate include line is `#include <mythical/charge_transport/marcus.hpp>`. 
-Additionally, the site energies that are
-passed to the Marcus rate equation are adjusted to account for effects of an external
-electric field applied in the x direction of our lattice.
+I have made use of the Marcus rate equation pacakged with MythiCaL to actually
+calculate the rates, the appropriate include line is `#include
+<mythical/charge_transport/marcus.hpp>`.  Additionally, the site energies that
+are passed to the Marcus rate equation are adjusted to account for effects of
+an external electric field applied in the x direction of our lattice.
 
 $$ \varepsilon^{field}_{ij} = q E_{x} \Delta x_{ij} $$ 
 
-* \varepsilon^{field}_{ij} is the energy contribution to add to site $$j$$ when moving from site $$i$$ [eV]
-* $$q$$ is the charge, because we are using units of [eV] this will be $$1$$ for holes and $$-1$$ for electrons
+* \varepsilon^{field}_{ij} is the energy contribution to add to site $$j$$ when
+  moving from site $$i$$ [eV]
+* $$q$$ is the charge, because we are using units of [eV] this will be $$1$$
+  for holes and $$-1$$ for electrons
 * $$E_{x}$$ is the electric field [eV/nm]
-* $$\Delta x_{ij}$$ is the change in x distance in moving from site $$i$$ to site $$j$$ [nm]
+* $$\Delta x_{ij}$$ is the change in x distance in moving from site $$i$$ to
+  site $$j$$ [nm]
 
 ```c++
 unordered_map<int,unordered_map<int,double>>
@@ -202,5 +223,4 @@ unordered_map<int,unordered_map<int,double>>
     }
     return rates;
   }
-
 ```
