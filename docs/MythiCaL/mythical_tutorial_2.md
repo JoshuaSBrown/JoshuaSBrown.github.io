@@ -141,3 +141,56 @@ For a more sophisticated approach one could use the CATNIP program with Gaussian
 a small [tutorial](https://joshuasbrown.github.io/docs/CATNIP/catnip_tutorial3.html) 
 showing how to caculate the constants shown in the equation above. Some Quantum Chemistry
 packages also provide a means of calcuating $$|H_{AB}|$$ natively such as NWCHem.
+
+In the following code snippet we show how the rates are prepared to run a Time of Flight 
+simulation using MythiCaL. The rates are stored in a nested unordered_map. The keys of
+both maps are the site indices. 
+
+We have defined a cutoff distance of $$2.0$$ nm for neighboring sites. Only sites within
+this cutoff distance will be considered a potential hopping site. We then proceed to 
+define several of the constants. I have made use of the Marcus rate equation pacakged
+with MythiCaL to actually calculate the rates. Additionally, the site energies that are
+passed to the marcur rate equation are adjusted to account for effects of an external
+electric field applied in the x direction of our lattice. 
+
+```c++
+unordered_map<int,unordered_map<int,double>>
+  calculateRates(const myct::Cubic & lattice, std::vector<double> site_energies) {
+    std::cout << "- Calculating rates between sites." << std::endl;
+    // Calculate rates between neighboring sites
+    double cutoff_dist = 2.0; // nm
+    double lambda = 0.02; // eV
+    double Temp = 300; // K
+
+    // Here we are have H_AB = A * exp( -alpha * r_ij )
+    double alpha = 6; // 1/nm
+    double A = 8; // eV
+    auto marcus = myct::Marcus(lambda, Temp);
+
+    double electric_field = 0.008; // eV/nm
+    double charge = 1.0; // q because hole
+
+    unordered_map<int,unordered_map<int,double>> distances = lattice.getNeighborDistances(cutoff_dist);
+    // Here we are now going to assign rates based on the Marcus rate equation
+    unordered_map<int,unordered_map<int,double>> rates;
+    for ( auto site_neighs : distances ) {
+      int site_i = site_neighs.first;
+      int x_i = lattice.getX(site_i);
+      double energy_i = site_energies.at(site_i);
+      for ( auto site_dist : site_neighs.second ) {
+        int site_j = site_dist.first;
+        int x_j = lattice.getX(site_j);
+        double x_diff_dist = static_cast<double>(x_j - x_i) * lattice.getLatticeSpacing();
+        double energy_j = site_energies.at(site_j) - electric_field * x_diff_dist * charge;
+        double r_ij = site_dist.second;
+        double H_AB = A*std::exp( -1.0 * alpha * r_ij );
+        double rate_ij = marcus.getRate(energy_i, energy_j, H_AB);
+        double rate_ji = marcus.getRate(energy_j, energy_i, H_AB);
+        rates[site_i][site_j] = rate_ij;
+        rates[site_j][site_i] = rate_ji;
+      }
+    }
+    return rates;
+  }
+
+```
