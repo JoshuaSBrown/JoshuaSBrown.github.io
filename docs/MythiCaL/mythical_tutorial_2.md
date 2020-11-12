@@ -40,7 +40,7 @@ did previously but with several improvements.
 
 # 1. Creating a Cubic Lattice 
 
-<img src="/assets/mythical_tutorial_II_a.jpg"  width="80%" style="border:30px solid white" />
+<img src="/assets/mythical_tutorial_II_a.jpg"  width="90%" style="border:30px solid white" />
 
 Here we demonstrate a cubic lattice of sites. MythiCaL carries with it for 
 convenience a class specefically for this purpose which can easily be imported by
