@@ -15,7 +15,7 @@ did previously but with several improvements.
 
 # 1. Creating a Cubic Lattice 
 
-<img src="/assets/mythical_tutorial_II_a.jpg"  width="100%" style="border:30px solid white" />
+<img src="/assets/mythical_tutorial_II_a.jpg"  width="80%" style="border:30px solid white" />
 
 Here we demonstrate a cubic lattice of sites. MythiCaL carries with it for 
 convenience a class specefically for this purpose which can easily be imported by
@@ -52,15 +52,15 @@ A normal or Gaussian distribution is often used to represent the Density of
 States (DOS) of disordered semiconductors. We will use the that approximation
 here, but if one actually knew the shape of the DOS it could be used instead. 
 
-One of the chief approximations of Gaussian Disorder Model used by Bassler is
+One of the chief approximations of Gaussian Disorder Model used by B&auml;ssler is
 that the energies assigned to sites are uncorrelated. This means we can
 randomly assign energies from the DOS to each of the sites without considering
 that sites in close proximity might be energetically similar. Thankfully the
-c++ library comes with a very nice random number generator.
+c++ standard library comes with a nice random number generator.
 
-In the code snippet below we know the total number of sites so a vector equal
-to the number of sites, each site has an index and thus each index of the
-vector **site_energies** contains the energy associated with that particular
+In the code snippet below, we know the total number of sites, so a vector instance equal
+to the number of sites is first initialized. Each site has an index and thus each index of the
+vector (**site_energies**) is assigned the energy associated with that particular
 site.  
 
 ```c++
@@ -80,4 +80,39 @@ std::vector<double> generateSiteEnergies(const int & total_num_sites) {
 }
 ``` 
 
-# 3. Calculate the Rates between Sites 
+# 3. Calculate the Rates between Sites
+
+The next step involves defining the hopping rates that govern charge movement between sites. We
+will calculate these rates using the semiclassical Marcus rate equation, though the Miller and 
+Abrahams rate equation would also be appropriate.
+
+$$ k_ij = \frac{2\pi}{\hbar} \frac{1}{\sqrt(2 \pi \lambda k_B T)} |H_AB|^2 exp( - \frac{(\lambda + \varepsilon_j - \varepsilon_i)^2}{4 \lambda k_B T} ) $$
+
+* $$k_ij$$ represents the hopping rate [1/s]
+* $$\hbar$$ is plank's constant with a value of $$6.582119569 \times 10^{−16} $$ [eV s]
+* $$\lambda$$ is the reorganization energy [eV]
+* $$k_B$$ is Boltzmann's constant with a value of $$8.617333262145 \times 10^{−5}$$ [eV/K]
+* $$T$$ is the temperature [K]
+* $$H_{AB}$$ is the electronic coupling between initial and final states [eV]
+* $$\varepsilon_i$$ is the energy of the site the charge is hopping from [eV]
+* $$\varepsilon_j$$ is the energy of the site the charge is hopping to [eV]
+
+I will not go into detail about the Marcus rate equation and how it is derived as there are 
+numerious other resources available to the interested reader. However, an explanation of 
+how the $$H_{AB}$$ is calculated is warranted. We will assume that the $$H_{AB}$$ is the 
+same between every site with only a distance dependence. Such that $$H_{AB}$$ has the following
+form. 
+
+$$|H_{AB}|^2 = J_0 e^(- 2 \alpha r_{ij} )$$
+
+* $$J_0$$ is a prefactor [eV]
+* $$\alpha$$ is a tunneling constant [1/nm]
+* $$r_{ij}$$ is the distance between sites $$i$$ and $$j$$
+
+This approximation is sufficient for our purposes. Deriving appropriate values for $$H_{AB}$$ 
+is a bit annoying and requires Quantum Chemistry calculations. You could use the energy 
+splitting in dimer method mentioned [here](https://joshuasbrown.github.io/docs/CATNIP/catnip_theory.html) to calculate $$H_{AB}$$.
+For a more sophisticated approach one could use the CATNIP program with Gaussian, I have provided
+a small [tutorial](https://joshuasbrown.github.io/docs/CATNIP/catnip_tutorial3.html) 
+showing how to caculate the constants shown in the equation above. Some Quantum Chemistry
+packages also provide a means of calcuating $$|H_{AB}|$$ natively such as NWCHem.
