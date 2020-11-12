@@ -40,7 +40,7 @@ drive a current. At this point we however have no free carriers. To create some
 carriers light is used to optically excite charges on one side of the material.
 The electric field then facilitates of the charges to the opposing electrode.
 
-<img src="/assets/mythical_ToF_tutorial_II_b.png"  width="90%" style="border:30px solid white" />
+<img src="/assets/mythical_ToF_tutorial_II_b.png"  width="100%" />
 
 In this tutorial, we will model this experiment but with the improvements listed
 below. 
