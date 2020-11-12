@@ -148,10 +148,20 @@ both maps are the site indices.
 
 We have defined a cutoff distance of $$2.0$$ nm for neighboring sites. Only sites within
 this cutoff distance will be considered a potential hopping site. We then proceed to 
-define several of the constants. I have made use of the Marcus rate equation pacakged
-with MythiCaL to actually calculate the rates. Additionally, the site energies that are
-passed to the marcur rate equation are adjusted to account for effects of an external
-electric field applied in the x direction of our lattice. 
+define several of the constants. 
+
+I have made use of the Marcus rate equation pacakged
+with MythiCaL to actually calculate the rates, the appropriate include line is `#include <mythical/charge_transport/marcus.hpp>`. 
+Additionally, the site energies that are
+passed to the Marcus rate equation are adjusted to account for effects of an external
+electric field applied in the x direction of our lattice.
+
+$$ \varepsilon^{field}_{ij} = q E_{x} \Delta x_{ij} $$ 
+
+* \varepsilon^{field}_{ij} is the energy contribution to add to site $$j$$ when moving from site $$i$$ [eV]
+* $$q$$ is the charge, because we are using units of [eV] this will be $$1$$ for holes and $$-1$$ for electrons
+* $$E_{x}$$ is the electric field [eV/nm]
+* $$\Delta x_{ij}$$ is the change in x distance in moving from site $$i$$ to site $$j$$ [nm]
 
 ```c++
 unordered_map<int,unordered_map<int,double>>
