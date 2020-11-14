@@ -87,8 +87,11 @@ should be then we are one step closer to correctly modeling the electrical
 properties of a real material. 
  
 A normal or Gaussian distribution is often used to represent the Density of
-States (DOS) of disordered semiconductors. We will use the that approximation
-here, but if one actually knew the shape of the DOS it could be used instead. 
+States (DOS) of disordered semiconductors. We will use that approximation
+here, but if one actually knew the shape of the DOS it could be used instead.
+We will also assume the carriers we are going to simulate are holes, so the
+DOS is assumed to be composed of the HOMO levels of molecules we are 
+modeling.
 
 One of the chief approximations of Gaussian Disorder Model used by B&auml;ssler
 is that the energies assigned to sites are uncorrelated. This means we can
@@ -191,41 +194,141 @@ $$ \varepsilon^{field}_{ij} = q E_{x} \Delta x_{ij} $$
 
 ```c++
 unordered_map<int,unordered_map<int,double>>
-  calculateRates(const myct::Cubic & lattice, std::vector<double> site_energies) {
-    std::cout << "- Calculating rates between sites." << std::endl;
-    // Calculate rates between neighboring sites
-    double cutoff_dist = 2.0; // nm
-    double lambda = 0.02; // eV
-    double Temp = 300; // K
+calculateRates(const myct::Cubic & lattice, std::vector<double> site_energies) {
+  std::cout << "- Calculating rates between sites." << std::endl;
+  // Calculate rates between neighboring sites
+  double cutoff_dist = 2.0; // nm
+  double lambda = 0.02; // eV
+  double Temp = 300; // K
 
-    // Here we are have H_AB = A * exp( -alpha * r_ij )
-    double alpha = 6; // 1/nm
-    double A = 8; // eV
-    auto marcus = myct::Marcus(lambda, Temp);
+  // Here we are have H_AB = A * exp( -alpha * r_ij )
+  double alpha = 6; // 1/nm
+  double A = 8; // eV
+  auto marcus = myct::Marcus(lambda, Temp);
 
-    double electric_field = 0.008; // eV/nm
-    double charge = 1.0; // q because hole
+  double electric_field = 0.008; // eV/nm
+  double charge = 1.0; // q because hole
 
-    unordered_map<int,unordered_map<int,double>> distances = lattice.getNeighborDistances(cutoff_dist);
-    // Here we are now going to assign rates based on the Marcus rate equation
-    unordered_map<int,unordered_map<int,double>> rates;
-    for ( auto site_neighs : distances ) {
-      int site_i = site_neighs.first;
-      int x_i = lattice.getX(site_i);
-      double energy_i = site_energies.at(site_i);
-      for ( auto site_dist : site_neighs.second ) {
-        int site_j = site_dist.first;
-        int x_j = lattice.getX(site_j);
-        double x_diff_dist = static_cast<double>(x_j - x_i) * lattice.getLatticeSpacing();
-        double energy_j = site_energies.at(site_j) - electric_field * x_diff_dist * charge;
-        double r_ij = site_dist.second;
-        double H_AB = A*std::exp( -1.0 * alpha * r_ij );
-        double rate_ij = marcus.getRate(energy_i, energy_j, H_AB);
-        double rate_ji = marcus.getRate(energy_j, energy_i, H_AB);
-        rates[site_i][site_j] = rate_ij;
-        rates[site_j][site_i] = rate_ji;
-      }
+  unordered_map<int,unordered_map<int,double>> distances = lattice.getNeighborDistances(cutoff_dist);
+  // Here we are now going to assign rates based on the Marcus rate equation
+  unordered_map<int,unordered_map<int,double>> rates;
+  for ( auto site_neighs : distances ) {
+    int site_i = site_neighs.first;
+    int x_i = lattice.getX(site_i);
+    double energy_i = site_energies.at(site_i);
+    for ( auto site_dist : site_neighs.second ) {
+      int site_j = site_dist.first;
+      int x_j = lattice.getX(site_j);
+      double x_diff_dist = static_cast<double>(x_j - x_i) * lattice.getLatticeSpacing();
+      double energy_j = site_energies.at(site_j) - electric_field * x_diff_dist * charge;
+      double r_ij = site_dist.second;
+      double H_AB = A*std::exp( -1.0 * alpha * r_ij );
+      double rate_ij = marcus.getRate(energy_i, energy_j, H_AB);
+      double rate_ji = marcus.getRate(energy_j, energy_i, H_AB);
+      rates[site_i][site_j] = rate_ij;
+      rates[site_j][site_i] = rate_ji;
     }
-    return rates;
   }
+  return rates;
+}
 ```
+
+# 4. Exciting Charges
+
+We are now at the phase where we can actually start the experiment. The first part of our experiment is to excite charges at one side
+of our lattice so at to mimic photoexcitation on one side of our device. We will model photoexcitation by deciding the number of charges we want
+to excite and randomly picking sites on the first plane of our lattice to place these charges. There are of course more sophisticated methods
+for doing this i.e. you could use the materials absorption coefficient and the incident light spectrum to calculate the number of charges that would be excited and how far they would penetrate the material. 
+
+Below, a function is shown that takes the number of charges and the lattice. 
+It returns a vector of pairs. The first item in the pair is the id associated with
+the walker. The second item, is a shared pointer to the walker. The walker
+class is provided by the _MythiCaL_ library and contains several methods that
+it to be used with _MythiCaL_'s **CoarseGrainSystem** class. Notice that to indicate that
+the walker is occuping a site the **occupySite** method is called with the id of the 
+site it occupies. As we are using holes we will
+make a child class that inherets from the **Walker** class named **Hole**. 
+
+```c++
+#include <mythical/walker.hpp>
+typedef std::pair<int,shared_ptr<my::Walker>> walker_t;
+
+class Hole : public my::Walker {};
+
+vector<walker_t> populateLattice(int num_charges, myct::Cubic & lattice ) {
+   std::cout << "- Populating first plane of lattice with charges" << std::endl;
+   unordered_set<int> siteOccupied;
+   while ( siteOccupied.size() < num_charges ) {
+      int site = lattice.getRandomSite(myct::Cubic::Plane::YZ, 0);
+      siteOccupied.insert(site);
+   }
+
+   // Now we are going to place charges on the randomly picked sites
+   vector<walker_t> holes;
+   holes.reserve(num_charges);
+   int charge_id = 0;
+   for ( int site_id : siteOccupied ) {
+      holes.emplace_back(charge_id,shared_ptr<my::Walker>(new Hole));
+      holes.back().second->occupySite(site_id);
+      ++charge_id;
+   }
+   return holes;
+}
+```
+
+# 5. Setting up the Coarse Graining System
+
+The advantage of using _MythiCaL_ comes from the performance gains it can achieve
+by coarse-graining rapid hopping events that can occur between two low energy sites.
+In this step, we will instantiate the **CoarseGrainSystem** class.
+
+A random number seed is passed to CGsystem. A random number generator is used
+internally to determine which sites a charge will hop to. The time resolution
+is also set, this allows CGsystem to determine how much coarse-graining can
+occur the larger the time increment the more performance gains CGsystem can
+realize. Finally, the rates unordered_map created using calculateRates function
+and the holes generated using the populateLattice function are passed into
+CGsystem.
+
+CGsystem knows nothing about the topology of the system you are simulating until
+the rates are passed in. Passing the rates in allows CGsystem to generate a graph
+where the sites are the vertices and the rates are weighted edges connecting the
+vertices. 
+
+The initializeWalkers method is to let the CGsystem know which sites are populated.
+It also sets the dwell time each walker will remain on it's site before attempting
+to hop. 
+
+```c++
+double time_inc = 1E-9/150.0;
+int random_number_seed = 1943;
+my::CoarseGrainSystem CGsystem;
+CGsystem.setRandomSeed(random_number_seed);
+CGsystem.setTimeResolution(time_inc);
+CGsystem.initializeSystem(rates);
+CGsystem.initializeWalkers(holes);
+```
+
+# 6. Creating a Queue
+
+Before moving any of holes through the lattice we need to know which hole should be moved first.
+We can do this by creating a queue of the holes and their dwell times. For conveniance packed
+with _MythiCaL_ is a **Queue** class. In the function below the dwell time of each walker
+is placed in the walker_global_times instantiation of **Queue** along with the walkers dwell time.
+The queue is then sorted based on the dwell time. 
+
+```c++
+my::Queue createQueue(const vector<walker_t> & holes, double cutoff_time) {
+  std::cout << "- Creating queue for holes." << std::endl;
+  my::Queue walker_global_times;
+  mt19937 random_number_generator;
+  random_number_generator.seed(4);
+  uniform_real_distribution<double> distribution(0.0,1.0);
+  for(int walker_index=0; walker_index < holes.size(); ++walker_index){
+    walker_global_times.add(pair<int,double>(walker_index,holes.at(walker_index).second->getDwellTime()));
+  }
+  walker_global_times.sort();
+  return walker_global_times;
+}
+```
+
