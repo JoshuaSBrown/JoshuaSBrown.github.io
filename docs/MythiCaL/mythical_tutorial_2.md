@@ -181,7 +181,7 @@ an external electric field applied in the x direction of our lattice.
 
 $$ \varepsilon^{field}_{ij} = q E_{x} \Delta x_{ij} $$ 
 
-* \varepsilon^{field}_{ij} is the energy contribution to add to site $$j$$ when
+* $$\varepsilon^{field}_{ij}$$ is the energy contribution to add to site $$j$$ when
   moving from site $$i$$ [eV]
 * $$q$$ is the charge, because we are using units of [eV] this will be $$1$$
   for holes and $$-1$$ for electrons
