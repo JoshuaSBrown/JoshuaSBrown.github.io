@@ -33,6 +33,8 @@ In the previous simulation, I showed how to simulate a single charge moving
 along a 1d lattice. In this tutorial, we will expand on what we did previously
 but with several improvements by simulating a Time of Flight (ToF) experiment.
 
+## ToF
+
 The goal of a ToF experiment is to calculate the carrier mobility, typically it
 is used with organic semiconductors. To do this a material is sandwhiched
 between two electrodes. An electric field is applied between the electrodes to
@@ -42,16 +44,28 @@ The electric field then facilitates of the charges to the opposing electrode.
 
 <img src="/assets/mythical_ToF_tutorial_II_b.png"  width="100%" />
 
+## Improvements to be Added
+
 In this tutorial, we will model this experiment but with the improvements listed
 below. 
 
-1. We will use a 3d lattice, with periodic boundaries on the y and z directions
-2. We will use the Marcus rate equation with the Gaussian Disorder model to
+* We will use a 3d lattice, with periodic boundaries on the y and z directions
+* We will use the Marcus rate equation with the Gaussian Disorder model to
    generate our rates
-3. We will simulate several charges as opposed to just 1
-4. We will show how to calculate the current transient
+* We will simulate several charges as opposed to just 1
+* We will show how to calculate the current transient
 
-# 1. Creating a Cubic Lattice 
+Implementation of the ToF simulation is setup in 7 steps:
+
+1. [Creating a Cubic Lattice](#1.-Creating-a-Cubic-Lattice)
+2. [Impart Material Qualities to the Lattice](#2.-Impart-Material-Qualities-to-the-Lattice)
+3. [Calculate the Rates between Sites](#3.-Calculate-the-Rates-between-Sites)
+4. [Exciting Charges](#4.-Exciting-Charges)
+5. [Setting up the Coarse Graining System](#5.-Setting-up-the-Coarse-Graining-System)
+6. [Creating a Queue](#6.-Creating-a-Queue)
+7. [The Main Loop](#7.-The-Main-Loop)
+
+# 1. Creating a Cubic Lattice
 
 <img src="/assets/mythical_tutorial_II_a.jpg"  width="90%" style="border:30px solid white" />
 
