@@ -33,19 +33,6 @@ In the previous simulation, I showed how to simulate a single charge moving
 along a 1d lattice. In this tutorial, we will expand on what we did previously
 but with several improvements by simulating a Time of Flight (ToF) experiment.
 
-## ToF
-
-The goal of a ToF experiment is to calculate the carrier mobility, typically it
-is used with organic semiconductors. To do this a material is sandwhiched
-between two electrodes. An electric field is applied between the electrodes to
-drive a current. At this point we however have no free carriers. To create some
-carriers light is used to optically excite charges on one side of the material.
-The electric field then facilitates of the charges to the opposing electrode.
-
-<img src="/assets/mythical_ToF_tutorial_II_b.png"  width="100%" />
-
-## Improvements to be Added
-
 In this tutorial, we will model this experiment but with the improvements listed
 below. 
 
@@ -54,6 +41,19 @@ below.
    generate our rates
 * We will simulate several charges as opposed to just 1
 * We will show how to calculate the current transient
+
+## ToF
+
+The goal of a ToF experiment is to calculate the carrier mobility, typically it
+is used with organic semiconductors. To setup a ToF experiment the semiconductor
+is sandwhiched between two electrodes. An electric field is applied across the electrodes to
+provide an energetic driver for any free carriers. Depending on the size of the band
+gap in the semiconductor there are likely to be few free carriers. To create some
+carriers light is used to optically excite charges on one side of the material.
+The electric field then facilitates movement of the charges to the opposing electrode 
+generating a current.
+
+<img src="/assets/mythical_ToF_tutorial_II_b.png"  width="100%" />
 
 Implementation of the ToF simulation is setup in 7 steps:
 
@@ -69,21 +69,23 @@ Implementation of the ToF simulation is setup in 7 steps:
 
 <img src="/assets/mythical_tutorial_II_a.jpg"  width="90%" style="border:30px solid white" />
 
-Here we demonstrate a cubic lattice of sites. _MythiCaL_ carries with it for
-convenience a class specefically for this purpose which can easily be imported
+Here we demonstrate a cubic lattice of sites. The _MythiCaL_ library contains a
+convenience class specifically for this purpose which can easily be imported
 by including the right header file. 
 
 ```c++
 #include <mythical/charge_transport/cubic_lattice.hpp>
 ```
 
-Once the header is imported we can define out lattice. Below we have defined
-a lattice 100 by 80 by 50 sites where the spacing between each of the sites is
-a single nm and our y and z boundaries are periodic. 
+Once the header is imported, we can define out lattice. Below we have defined
+a lattice 200 by 80 by 80 sites where the spacing between each of the sites is
+a single nm. Our y and z boundaries have also been made periodic to avoid 
+surface artifacts. 
 
-```c++ 
+```c++
+const int len = 200;
 const int wid = 80;
-const int hei = 50;
+const int hei = 80;
 const double inter_site_dist = 1; // nm
 const int total_num_sites = len * wid * hei; 
 myct::BoundarySetting x_b = myct::BoundarySetting::Fixed;
@@ -95,28 +97,36 @@ myct::Cubic lattice(len, wid, hei, inter_site_dist, x_b, y_b, z_b);
 # 2. Impart Material Qualities to the Lattice
 
 Having created a lattice, the next step involves making the lattice represent a
-material we are actually interested in. Each of our lattice points must have an
+material we are interested in. Each of our lattice points must have an
 energy associated with it. If we can accurately calculate what that energy
 should be then we are one step closer to correctly modeling the electrical
 properties of a real material. 
  
 A normal or Gaussian distribution is often used to represent the Density of
-States (DOS) of disordered semiconductors. We will use that approximation
-here, but if one actually knew the shape of the DOS it could be used instead.
+States (DOS) of disordered semiconductors. We will assume this approximation
+holds here, but if one knew the shape of the DOS it could be used instead.
 We will also assume the carriers we are going to simulate are holes, so the
 DOS is assumed to be composed of the HOMO levels of molecules we are 
 modeling.
 
-One of the chief approximations of Gaussian Disorder Model used by B&auml;ssler
-is that the energies assigned to sites are uncorrelated. This means we can
-randomly assign energies from the DOS to each of the sites without considering
+By using a Gaussian distribution to model the DOS we can use the standard 
+deviation of the Gaussian distribution as a metric to measure the disorder of
+our semiconductor. To give the reader some context of the size of this parameter, 
+for AlQ3 values of 0.2 eV have been calculated [1], for α-NPT, spiro-DPVBi, TCTA [2] 
+the standard deviation has been calculated to range from 0.10 – 0.156 eV and for 
+several copolymers it has been found to range between 0.09 – 0.11 eV [3].
+In general, a narrower DOS indicates less disorder which will lead to a higher carrier mobility.
+
+One of the chief approximations of Gaussian Disorder Model, used by B&auml;ssler,
+is that the energies assigned to sites are uncorrelated. We will assume this approximation
+hold true, so we will randomly assign energies from the DOS to each of the sites without considering
 that sites in close proximity might be energetically similar. Thankfully the
 c++ standard library comes with a nice random number generator.
 
 In the code snippet below, we know the total number of sites, so a vector
-instance equal to the number of sites is first initialized. Each site has an
-index and thus each index of the vector (**site_energies**) is assigned the
-energy associated with that particular site.  
+instance equal to the number of sites is first initialized. Each site has a
+unique index thus by assigning an energy to each index of the vector (**site_energies**) 
+all of the sites in the lattice are accounted for.  
 
 ```c++
 std::vector<double> generateSiteEnergies(const int & total_num_sites) {
@@ -185,7 +195,7 @@ We have defined a cutoff distance of $$2.0$$ nm for neighboring sites. Only
 sites within this cutoff distance will be considered a potential hopping site.
 We then proceed to define several of the constants. 
 
-I have made use of the Marcus rate equation pacakged with MythiCaL to actually
+I have made use of the Marcus rate equation pacakged with MythiCaL to
 calculate the rates, the appropriate include line is 
 
 ```c++
@@ -249,7 +259,7 @@ calculateRates(const myct::Cubic & lattice, std::vector<double> site_energies) {
 
 # 4. Exciting Charges
 
-We are now at the phase where we can actually start the experiment. The first part of our experiment is to excite charges at one side
+We are now at the phase where we can start the experiment. The first part of our experiment is to excite charges at one side
 of our lattice so at to mimic photoexcitation on one side of our device. We will model photoexcitation by deciding the number of charges we want
 to excite and randomly picking sites on the first plane of our lattice to place these charges. There are of course more sophisticated methods
 for doing this i.e. you could use the materials absorption coefficient and the incident light spectrum to calculate the number of charges that would be excited and how far they would penetrate the material. 
@@ -305,7 +315,7 @@ and the holes generated using the populateLattice function are passed into
 CGsystem.
 
 CGsystem knows nothing about the topology of the system you are simulating until
-the rates are passed in. Passing the rates in allows CGsystem to generate a graph
+the rates are passed in. Passing the rates in allows CGsystem to generate a directed graph
 where the sites are the vertices and the rates are weighted edges connecting the
 vertices. 
 
@@ -326,9 +336,9 @@ CGsystem.initializeWalkers(holes);
 # 6. Creating a Queue
 
 Before moving any of holes through the lattice we need to know which hole should be moved first.
-We can do this by creating a queue of the holes and their dwell times. For conveniance packed
-with _MythiCaL_ is a **Queue** class. In the function below the dwell time of each walker
-is placed in the walker_global_times instantiation of **Queue** along with the walkers dwell time.
+We can do this by creating a queue of the holes and their dwell times. For conveniance, the
+_MythiCaL_ library contains a **Queue** class for this purpose. In the function below, the dwell time of each walker
+is placed in the walker_global_times instantiation of **Queue** along with the walkers id.
 The queue is then sorted based on the dwell time. 
 
 ```c++
@@ -353,18 +363,17 @@ to propogate through out lattice. The loop finishes when either all of the holes
 removed because they reached the far side of the lattice or the simulation has run past a
 defined cutoff time.
 
-Note, in the code below we have given two loops, the inner loop has been implemented to 
+Note, in the code below we have a nested loop, the inner loop has been implemented so as to
 avoid outputting the current density every time a charge hops.
 
-Really in it's simpest form the inner loop would proceed by grabbing the first hole in 
-the **Queue**, which will be the walker with the shortest dwell time. This hole would
-then be allowed to hop and the charge would be moved to a neighboring site. If the hole has
-not reached the end of the lattice it is placed back into the **Queue**,
-its position in the **Queue** will be based on it's new dwell time. If it has
+In it's simpest form, the inner loop would proceed by grabbing the first hole in 
+the **Queue**, which would be the hole with the shortest dwell time. This hole would
+then be allowed to hop to a neighboring site. If the hole has
+not reached the end of the lattice it is placed back into the **Queue** in the correct order. If it has
 reached the end of the lattice it is removed from the system.
 
-However, we can calculate the transient current by also keeping track of the 
-displacement of all the charges in the x direction during a time increment. Hence, the
+However, we have not implemented the simplest form because we would like to calculate the transient current.
+To do this we also must keep track of the displacement of all the charges in the x direction during a time increment. Hence, the
 change in the x posistion of each charge is calculated and added to the deltaX variable. 
 
 ```c++
@@ -403,5 +412,18 @@ while(walker_global_times.size() && walker_global_times.at(0).second<cutoff_time
   sample_time+=sample_time_inc;
 }
 ```
+
+# Running the ToF Simulation
+
+For reference this code has been placed in it's entirety in the [examples folder
+in the _MythiCaL_ repository](https://github.com/JoshuaSBrown/MythiCaL/tree/master/examples/ToF).
+
+
+# References
+
+1.	J. Nelson, J. J. Kwiatkowski, J. Kirkpatrick, and J. M. Frost, “Modeling charge transport in organic photovoltaic materials,” Acc. Chem. Res., vol. 42, no. 11, pp. 1768–1778, 2009.
+2.	A. Masse, Multiscale modeling of charge transport in organic devices : from molecule to device Multiscale modeling of charge transport in organic devices : from molecule to device. 2017.
+3.	S. T. Hoffmann et al., “How do disorder, reorganization, and localization influence the hole mobility in conjugated copolymers?,” J. Am. Chem. Soc., vol. 135, no. 5, pp. 1772–1782, 2013.
+
 
 
