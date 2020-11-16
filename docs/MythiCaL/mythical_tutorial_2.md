@@ -178,14 +178,14 @@ Chemistry packages also provide a means of calcuating $$|H_{AB}|$$ natively
 such as NWCHem.
 
 In the following code snippet we show how the rates are prepared to run a Time
-of Flight simulation using MythiCaL. The rates are stored in a nested
+of Flight simulation using _MythiCaL_. The rates are stored in a nested
 unordered_map. The keys of both maps are the site indices. 
 
 We have defined a cutoff distance of $$2.0$$ nm for neighboring sites. Only
 sites within this cutoff distance will be considered a potential hopping site.
 We then proceed to define several of the constants. 
 
-I have made use of the Marcus rate equation pacakged with MythiCaL to actually
+I have made use of the Marcus rate equation pacakged with _MythiCaL_ to actually
 calculate the rates, the appropriate include line is 
 
 ```c++
