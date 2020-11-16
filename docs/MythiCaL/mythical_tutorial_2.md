@@ -332,3 +332,62 @@ my::Queue createQueue(const vector<walker_t> & holes, double cutoff_time) {
 }
 ```
 
+# 7. The Main Loop
+
+At this point, the setup for our experiment is complete. All that is left is to allow charges 
+to propogate through out lattice. The loop finishes when either all of the holes have been
+removed because they reached the far side of the lattice or the simulation has run past a
+defined cutoff time.
+
+Note, in the code below we have given two loops, the inner loop has been implemented to 
+avoid outputting the current density every time a charge hops.
+
+Really in it's simpest form the inner loop would proceed by grabbing the first hole in 
+the **Queue**, which will be the walker with the shortest dwell time. This hole would
+then be allowed to hop and the charge would be moved to a neighboring site. If the hole has
+not reached the end of the lattice it is placed back into the **Queue**,
+its position in the **Queue** will be based on it's new dwell time. If it has
+reached the end of the lattice it is removed from the system.
+
+However, we can calculate the transient current by also keeping track of the 
+displacement of all the charges in the x direction during a time increment. Hence, the
+change in the x posistion of each charge is calculated and added to the deltaX variable. 
+
+```c++
+const double sample_time_inc = 1E-11; //seconds
+double sample_time = sample_time_inc;
+const double cutoff_time = 4E-9; // seconds
+const double nm_to_cm = 1E-7; // cm/nm
+const double q = 1.602176634E-19;
+while(walker_global_times.size() && walker_global_times.at(0).second<cutoff_time){
+  double deltaX = 0.0;
+  while(walker_global_times.size() && walker_global_times.at(0).second < sample_time){
+    element_t walker_time = walker_global_times.pop_current();
+    std::shared_ptr<my::Walker>& hole = holes.at(walker_time.first).second;
+    int siteId = hole->getIdOfSiteCurrentlyOccupying();
+    int old_x_pos = lattice.getX(siteId);
+    CGsystem.hop(walker_time.first,hole);
+    siteId = hole->getIdOfSiteCurrentlyOccupying();
+    int new_x_pos = lattice.getX(siteId);
+    deltaX+=static_cast<double>(new_x_pos-old_x_pos);
+    // Update the dwell time
+    walker_time.second += hole->getDwellTime();
+    // reorder the walkers based on which one will move next
+    if(new_x_pos < lattice.getLength()-1){
+      walker_global_times.sortedAdd(walker_time);
+    } else {
+      CGsystem.removeWalkerFromSystem(walker_time.first,hole);
+    }
+  }
+  // Current Density velocity of charges * current_density [ J/cm^2 ]
+  double velocity = deltaX*nm_to_cm / sample_time_inc;
+  double num_charges = walker_global_times.size();
+  double volume = static_cast<double>(len*wid*hei) * nm_to_cm * nm_to_cm * nm_to_cm;
+  double charge_density = q * static_cast<double>(num_charges) / volume;
+  double transient_cur = charge_density * velocity;
+  std::cout << sample_time << " " << transient_cur << std::endl;
+  sample_time+=sample_time_inc;
+}
+```
+
+
