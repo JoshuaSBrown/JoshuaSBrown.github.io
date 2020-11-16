@@ -69,7 +69,7 @@ Implementation of the ToF simulation is setup in 7 steps:
 
 <img src="/assets/mythical_tutorial_II_a.jpg"  width="90%" style="border:30px solid white" />
 
-Here we demonstrate a cubic lattice of sites. MythiCaL carries with it for
+Here we demonstrate a cubic lattice of sites. _MythiCaL_ carries with it for
 convenience a class specefically for this purpose which can easily be imported
 by including the right header file. 
 
