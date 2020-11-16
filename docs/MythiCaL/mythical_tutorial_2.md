@@ -57,13 +57,13 @@ below.
 
 Implementation of the ToF simulation is setup in 7 steps:
 
-1. [Creating a Cubic Lattice](#1.-creating-a-cubic-lattice)
-2. [Impart Material Qualities to the Lattice](#2.-impart-material-qualities-to-the-lattice)
-3. [Calculate the Rates between Sites](#3.-calculate-the-rates-between-sites)
-4. [Exciting Charges](#4.-exciting-charges)
-5. [Setting up the Coarse Graining System](#5.-setting-up-the-coarse-graining-system)
-6. [Creating a Queue](#6.-creating-a-queue)
-7. [The Main Loop](#7.-the-main-loop)
+1. [Creating a Cubic Lattice](#1-creating-a-cubic-lattice)
+2. [Impart Material Qualities to the Lattice](#2-impart-material-qualities-to-the-lattice)
+3. [Calculate the Rates between Sites](#3-calculate-the-rates-between-sites)
+4. [Exciting Charges](#4-exciting-charges)
+5. [Setting up the Coarse Graining System](#5-setting-up-the-coarse-graining-system)
+6. [Creating a Queue](#6-creating-a-queue)
+7. [The Main Loop](#7-the-main-loop)
 
 # 1. Creating a Cubic Lattice
 
