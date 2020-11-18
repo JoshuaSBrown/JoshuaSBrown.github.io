@@ -418,12 +418,53 @@ while(walker_global_times.size() && walker_global_times.at(0).second<cutoff_time
 For reference this code has been placed in it's entirety in the [examples folder
 in the _MythiCaL_ repository](https://github.com/JoshuaSBrown/MythiCaL/tree/master/examples/ToF).
 
+It can be built and run with the following commands:
+
+```bash
+$ cmake -S . -B build
+$ cmake --build build
+$ cd build
+$ ./ToF_example
+```
+
+# Analysing the Results
+
+The time of flight example executable will output the current transient at 
+regular time intervals into a transient_current.txt file. For convenience
+a python script plot_current_transient.py has been placed in the scripts 
+folder in MythiCaL/examples/ToF. Running the python script with the txt file
+placed in the same folder will generate two images of the transient current. 
+One in a linear scale and the other in a log-log scale. 
+
+<img src="/assets/mythical_ToF_tutorial_II_c.png"  width="100%" />
+<img src="/assets/mythical_ToF_tutorial_II_d.png"  width="100%" />
+
+In the first image, you will notice that the current rapidly drops initially,
+this is what is referred to as hot carrier decay. As we randomly assigned
+charges to sites some of them would have ended up on high energy sites. It is
+easy for carriers in high energy sites to move because the energy barriers will
+be low.  As they move, they loose energy and decay into lower energy
+sites where the energetic barriers to moving forward become larger. It is neat
+to see how the kinetic Monte Carlo calculations are able to capture this
+behavior. I would recommend the interested reader to take a look at actual
+experiments to see how well Monte Carlo simulations can capture the 
+charge transport behavior. As an example consider the paper by T. Kreouzis et al. 
+where they depict similar profiles for the photocurrent [4].
+
+As the carriers continue to move through the material some of them become stuck
+in deep traps this is why there is a slope following the initial drop and is a
+result of dispersive transport where the signal becomes attenuated. The region
+where the current density begins to plateau is indicated to the left of the
+dotted line. Once the carriers start reaching the far electrode and are removed
+the current density drops again and is what causes the second slope seen in the
+tail region. The green line shown in linear plot clearly depicts where this
+transition occurs as it measures how many carriers remain in the active layer.
 
 # References
 
 1.	J. Nelson, J. J. Kwiatkowski, J. Kirkpatrick, and J. M. Frost, “Modeling charge transport in organic photovoltaic materials,” Acc. Chem. Res., vol. 42, no. 11, pp. 1768–1778, 2009.
 2.	A. Masse, Multiscale modeling of charge transport in organic devices : from molecule to device Multiscale modeling of charge transport in organic devices : from molecule to device. 2017.
 3.	S. T. Hoffmann et al., “How do disorder, reorganization, and localization influence the hole mobility in conjugated copolymers?,” J. Am. Chem. Soc., vol. 135, no. 5, pp. 1772–1782, 2013.
-
+4.  T. Kreouzis et al., “Temperature and field dependence of hole mobility in poly(9,9-dioctylfluorene),” Phys. Rev. B, vol. 73, no. 23, pp. 1–15, 2006.
 
 
