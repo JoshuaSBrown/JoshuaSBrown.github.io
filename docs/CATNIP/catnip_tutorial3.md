@@ -34,7 +34,7 @@ $$k_{ij} = \nu_0 e^{-2 \alpha r_{ij}} e^{- \frac{|\varepsilon_j - \varepsilon_i|
 
 Here, $$\nu_0$$ represents the attempt to hop frequency, $$\alpha$$ sometimes written with a $$\gamma$$ represents the tunneling constant or inverse localization length, $$r_{ij}$$ is the distance between two sites, $$\varepsilon_i$$ and $$\varepsilon_j$$ are the energies of the sites, and $$k_B$$ is the Boltzmann constant and $$T$$ the temperature respectively. 
 
-$$k_{ij} = \frac{2 \pi}{\hbar} \frac{1}{4 \pi k_B T} |H_{AB}|^2 e^{-\frac{(\Delta G-\lambda)^2}{4 \pi \lambda }}$$
+$$k_{ij} = \frac{2 \pi}{\hbar} \frac{1}{4 \pi k_B T} |H_{AB}|^2 e^{-\frac{(\Delta G+\lambda)^2}{4 \pi \lambda }}$$
 
 Here $$\hbar$$ is Planck's constant, $$\Delta G$$ is Gibbs free energy, $$H_{AB}$$ is the transfer integral sometimes it is denoted as $$J_{AB}$$ and $$\lambda$$ is the reorganization energy. 
 
